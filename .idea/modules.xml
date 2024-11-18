@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MLinkBluetoothOpenSDK.iml" filepath="$PROJECT_DIR$/.idea/modules/MLinkBluetoothOpenSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.iml" filepath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.main.iml" filepath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>

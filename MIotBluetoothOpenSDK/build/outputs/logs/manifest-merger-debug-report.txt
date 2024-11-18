@@ -1,0 +1,65 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:1:1-14:12
+INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:1:1-14:12
+INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:1:1-14:12
+	package
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:2:5-32
+		INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+		INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:4:5-68
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:4:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:5:5-74
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:5:22-71
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:6:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:7:22-78
+uses-permission#android.permission.BLUETOOTH_ADVERTISE
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:8:5-78
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:8:22-75
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:9:5-76
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:9:22-73
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:10:5-73
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:10:22-70
+uses-permission#android.permission.INTERNET
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:11:22-64
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:12:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:13:5-76
+	android:name
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml:13:22-73
+uses-sdk
+INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+		INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+		ADDED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml
+		INJECTED from D:\worker\MLinkBluetoothOpenSDK\MIotBluetoothOpenSDK\src\main\AndroidManifest.xml

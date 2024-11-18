@@ -1,0 +1,3 @@
+include ':MIotBluetoothOpenSDK'
+include ':app'
+rootProject.name = "MLinkBluetoothOpenSDK"

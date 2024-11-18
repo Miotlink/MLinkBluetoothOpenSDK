@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/bluetooth_iv"
+            android:src="@mipmap/bluetooth_img"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+
+        <TextView
+            android:layout_toRightOf="@+id/bluetooth_iv"
+            android:gravity="center_vertical"
+            android:textSize="16dp"
+            android:id="@+id/bluetooth_tv"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/black"
+            android:text="ML_Device(00:00:00:00:00:00)"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>
