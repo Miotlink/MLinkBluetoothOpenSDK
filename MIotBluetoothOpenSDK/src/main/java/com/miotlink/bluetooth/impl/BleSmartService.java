@@ -13,6 +13,7 @@ import com.miotlink.bluetooth.listener.SmartNotifyUartDataListener;
 import com.miotlink.bluetooth.model.BleModelDevice;
 
 import java.io.File;
+import java.util.List;
 
 public interface BleSmartService {
 
@@ -103,4 +104,6 @@ public interface BleSmartService {
     public void bindPu(String macCode) throws Exception;
 
     public void unBindPu(String macCode, int kindId, int modelId) throws Exception;
+
+    List<BleModelDevice> getConnectBleDevices()throws Exception;
 }

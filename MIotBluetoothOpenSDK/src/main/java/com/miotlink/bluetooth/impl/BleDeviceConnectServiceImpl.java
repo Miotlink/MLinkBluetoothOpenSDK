@@ -25,6 +25,8 @@ import com.miotlink.bluetooth.service.BleLog;
 import com.miotlink.bluetooth.utils.HexUtil;
 import com.miotlink.bluetooth.utils.ThreadUtils;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -117,6 +119,11 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
         if (smartNotifyUartDataListener != null) {
             smartNotifyUartDataListener.onNotifyUartData(macCode, 100, "Device is not Connect");
         }
+    }
+
+    @Override
+    public List<BleModelDevice> getConnectBleDevices() {
+        return ble.getConnectedDevices();
     }
 
     @Override

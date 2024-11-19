@@ -30,8 +30,8 @@ public class BluetoothDeviceStore {
     }
 
 
-    public BleModelDevice getBleModelDevice(String macCode){
-        if (mDeviceMap.containsKey(macCode)){
+    public BleModelDevice getBleModelDevice(String macCode) {
+        if (mDeviceMap.containsKey(macCode)) {
             return mDeviceMap.get(macCode);
         }
         return null;
@@ -41,7 +41,10 @@ public class BluetoothDeviceStore {
         if (bleModelDevice != null) {
             if (!TextUtils.isEmpty(bleModelDevice.getMacAddress())) {
                 if (!mDeviceMap.containsKey(bleModelDevice.getMacAddress())) {
-                     mDeviceMap.put(bleModelDevice.getMacAddress(), bleModelDevice);
+                    mDeviceMap.put(bleModelDevice.getMacAddress(), bleModelDevice);
+                    if (!TextUtils.equals(bleModelDevice.getMacAddress(), bleModelDevice.getBleAddress())) {
+                        mDeviceMap.put(bleModelDevice.getBleAddress(), bleModelDevice);
+                    }
                     return true;
                 }
             }
@@ -69,7 +72,6 @@ public class BluetoothDeviceStore {
             mDeviceMap.remove(macCode);
         }
     }
-
 
 
     public void removeDevice(String deviceMac) {

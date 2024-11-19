@@ -13,13 +13,10 @@ import com.miotlink.bluetooth.callback.BleWriteCallback;
 import com.miotlink.bluetooth.command.AwsSmartConfigCommand;
 import com.miotlink.bluetooth.model.BleModelDevice;
 import com.miotlink.bluetooth.service.Ble;
-import com.miotlink.bluetooth.utils.HexUtil;
 
-import org.json.JSONObject;
 
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+
 
 public abstract class AwsSmartConfigImpl extends BleConnectCallback<BleModelDevice> {
     private MyThread myThread = null;

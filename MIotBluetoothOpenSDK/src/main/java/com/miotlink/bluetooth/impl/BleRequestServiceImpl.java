@@ -24,6 +24,7 @@ import com.miotlink.bluetooth.utils.UuidUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -107,6 +108,8 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
             permissions.add(Manifest.permission.BLUETOOTH_SCAN);
             permissions.add(Manifest.permission.BLUETOOTH_ADVERTISE);
             permissions.add(Manifest.permission.BLUETOOTH_CONNECT);
+            permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         } else {
             permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
@@ -145,7 +148,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void onScan(BleDeviceScanListener bleDeviceScanListener) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -156,7 +159,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void onScan(int scanTime, BleDeviceScanListener bleDeviceScanListener) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -167,7 +170,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void onScanStop() throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -189,7 +192,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void connect(String macCode, SmartNotifyDeviceConnectListener mBleDeviceConnectListener) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -200,7 +203,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void setSmartNotifyUartDataListener(SmartNotifyUartDataListener smartNotifyUartDataListener) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -212,7 +215,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void onStartSmartConfig(String macCode, String ssid, String password, int delayMillis, BleSmartConfigListener bleSmartConfigListener) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -223,7 +226,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void onAwsStartSmartConfig(String macCode, String awsNetworkInfo, int delayMillis, BleSmartConfigListener bleSmartConfigListener) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -243,7 +246,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void send(String mac, String data) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -255,7 +258,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void send(String mac, byte[] data) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -266,7 +269,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void onDisConnect(String macCode) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -282,7 +285,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void getDeviceVersion(String macCode) throws Exception {
-        if (checkPermission()) {
+        if (!checkPermission()) {
             throw new Exception("permission Exception");
         }
         if (!Ble.getInstance().isBleEnable()) {
@@ -311,5 +314,8 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
         bleDeviceConnectService.unBindPu(macCode, kindId, modelId);
     }
 
-
+    @Override
+    public List<BleModelDevice> getConnectBleDevices() throws Exception {
+        return bleDeviceConnectService.getConnectBleDevices();
+    }
 }

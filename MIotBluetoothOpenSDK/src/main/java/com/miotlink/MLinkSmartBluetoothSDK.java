@@ -25,6 +25,8 @@ import com.miotlink.bluetooth.service.BleLog;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class MLinkSmartBluetoothSDK {
 
     public static final String TAG = MLinkSmartBluetoothSDK.class.getName();
@@ -103,6 +105,11 @@ public class MLinkSmartBluetoothSDK {
         }
 
     }
+
+    public List<BleModelDevice> getConnectBleDevices(){
+
+    }
+
 
     /**
      * 扫描蓝牙设备
