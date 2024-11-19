@@ -78,6 +78,9 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
         if (bleModelDevice != null) {
             BleModelDevice connectedDevice = ble.getConnectedDevice(bleModelDevice.getBleAddress());
             if (connectedDevice == null) {
+                if (smartNotifyUartDataListener != null) {
+                    smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
+                }
                 return;
             }
             ThreadUtils.execute(() -> {
@@ -88,11 +91,8 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
                     e.printStackTrace();
                 }
             });
-            return;
         }
-        if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
-        }
+
     }
 
     @Override
@@ -106,6 +106,9 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
         if (bleModelDevice != null) {
             BleModelDevice connectedDevice = ble.getConnectedDevice(bleModelDevice.getBleAddress());
             if (connectedDevice == null) {
+                if (smartNotifyUartDataListener != null) {
+                    smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
+                }
                 return;
             }
             ThreadUtils.execute(() -> {
@@ -116,12 +119,8 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
                     e.printStackTrace();
                 }
             });
+        }
 
-            return;
-        }
-        if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
-        }
     }
 
     @Override
@@ -135,6 +134,9 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
         if (bleModelDevice != null) {
             BleModelDevice connectedDevice = ble.getConnectedDevice(bleModelDevice.getBleAddress());
             if (connectedDevice == null) {
+                if (smartNotifyUartDataListener != null) {
+                    smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
+                }
                 return;
             }
             ThreadUtils.execute(() -> {
@@ -145,10 +147,6 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
                     e.printStackTrace();
                 }
             });
-            return;
-        }
-        if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
         }
     }
 
@@ -158,6 +156,9 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
         if (bleModelDevice != null) {
             BleModelDevice connectedDevice = ble.getConnectedDevice(bleModelDevice.getBleAddress());
             if (connectedDevice == null) {
+                if (smartNotifyUartDataListener != null) {
+                    smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
+                }
                 return;
             }
             ThreadUtils.execute(() -> {
@@ -168,21 +169,20 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
                     e.printStackTrace();
                 }
             });
+        }
 
-            return;
-        }
-        if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
-        }
     }
 
     @Override
     public void bindPu(String macCode, SmartNotifyBindPuListener smartNotifyBindPuListener) throws Exception {
-        this.smartNotifyBindPuListener=smartNotifyBindPuListener;
+        this.smartNotifyBindPuListener = smartNotifyBindPuListener;
         BleModelDevice bleModelDevice = BluetoothDeviceStore.getInstance().getBleModelDevice(macCode);
         if (bleModelDevice != null) {
             BleModelDevice connectedDevice = ble.getConnectedDevice(bleModelDevice.getBleAddress());
             if (connectedDevice == null) {
+                if (smartNotifyUartDataListener != null) {
+                    smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
+                }
                 return;
             }
             ThreadUtils.execute(() -> {
@@ -193,12 +193,8 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
                     e.printStackTrace();
                 }
             });
+        }
 
-            return;
-        }
-        if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
-        }
     }
 
     @Override
