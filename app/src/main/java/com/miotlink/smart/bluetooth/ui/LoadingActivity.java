@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Handler;
 
 
+import androidx.annotation.Nullable;
+
 import com.miotlink.MLinkSmartBluetoothSDK;
 import com.miotlink.smart.bluetooth.R;
 import com.miotlink.smart.bluetooth.base.BaseActivity;
@@ -37,8 +39,9 @@ public class LoadingActivity extends BaseActivity {
             @Override
             public void onResult(boolean allGranted, List<String> grantedList, List<String> deniedList) {
                 if (allGranted) {
-                    if (MLinkSmartBluetoothSDK.getInstance().checkPermissions()) {
-                        MLinkSmartBluetoothSDK.getInstance().openPermissions(LoadingActivity.this, 1001);
+                    if (!MLinkSmartBluetoothSDK.getInstance().isBleEnable()) {
+                        MLinkSmartBluetoothSDK.getInstance().startBluetooth(LoadingActivity.this, 1001);
+                        return;
                     }
                     mContext.startActivity(new Intent(mContext, ScanDeviceActivity.class));
                     finish();
@@ -48,6 +51,18 @@ public class LoadingActivity extends BaseActivity {
         }), 3000);
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1001) {
+            if (resultCode == RESULT_OK) {
+                mContext.startActivity(new Intent(mContext, ScanDeviceActivity.class));
+                finish();
+            }
+
+        }
     }
 
     @Override

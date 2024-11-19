@@ -10,7 +10,7 @@ public class SmartApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        MLinkSmartBluetoothSDK.getInstance().setDebug(true);
+        MLinkSmartBluetoothSDK.getInstance().setDebug(false);
         MLinkSmartBluetoothSDK.getInstance().init(this, "", (code, message) -> {
 
         });
