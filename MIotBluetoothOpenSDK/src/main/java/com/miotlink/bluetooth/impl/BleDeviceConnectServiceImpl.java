@@ -15,6 +15,7 @@ import com.miotlink.bluetooth.command.DeviceVersionCommand;
 import com.miotlink.bluetooth.command.IMessageProtocol;
 import com.miotlink.bluetooth.command.UartCommand;
 import com.miotlink.bluetooth.command.UnBindCommand;
+import com.miotlink.bluetooth.listener.SmartNotifyBindPuListener;
 import com.miotlink.bluetooth.listener.SmartNotifyDeviceConnectListener;
 import com.miotlink.bluetooth.listener.SmartNotifyUartDataListener;
 import com.miotlink.bluetooth.model.BleFactory;
@@ -47,6 +48,8 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
     SmartNotifyDeviceConnectListener bleDeviceConnectListener = null;
 
     SmartNotifyUartDataListener smartNotifyUartDataListener = null;
+
+    SmartNotifyBindPuListener smartNotifyBindPuListener = null;
 
     public BleDeviceConnectServiceImpl() {
         ble = Ble.getInstance();
@@ -88,7 +91,7 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
             return;
         }
         if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartData(macCode, 100, "Device is not Connect");
+            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
         }
     }
 
@@ -117,7 +120,7 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
             return;
         }
         if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartData(macCode, 100, "Device is not Connect");
+            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
         }
     }
 
@@ -145,7 +148,7 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
             return;
         }
         if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartData(macCode, 100, "Device is not Connect");
+            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
         }
     }
 
@@ -169,12 +172,13 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
             return;
         }
         if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartData(macCode, 100, "Device is not Connect");
+            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
         }
     }
 
     @Override
-    public void bindPu(String macCode) throws Exception {
+    public void bindPu(String macCode, SmartNotifyBindPuListener smartNotifyBindPuListener) throws Exception {
+        this.smartNotifyBindPuListener=smartNotifyBindPuListener;
         BleModelDevice bleModelDevice = BluetoothDeviceStore.getInstance().getBleModelDevice(macCode);
         if (bleModelDevice != null) {
             BleModelDevice connectedDevice = ble.getConnectedDevice(bleModelDevice.getBleAddress());
@@ -193,7 +197,7 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
             return;
         }
         if (smartNotifyUartDataListener != null) {
-            smartNotifyUartDataListener.onNotifyUartData(macCode, 100, "Device is not Connect");
+            smartNotifyUartDataListener.onNotifyUartDataListener(macCode, 100, "SUCCESS", "");
         }
     }
 
@@ -258,12 +262,16 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
                         switch (command.getCode()) {
                             case 0x06:
                                 if (values != null) {
-                                    smartNotifyUartDataListener.onSmartNotifyUartDataListener(device.getBleAddress(), HexUtil.encodeHexStr(values.get(0)));
+                                    if (smartNotifyUartDataListener != null) {
+                                        smartNotifyUartDataListener.onNotifyUartDataListener(device.getBleAddress(), 0x01, "SUCCESS", HexUtil.encodeHexStr(values.get(0)));
+                                    }
                                 }
                                 break;
                             case 0x04:
                                 if (values != null) {
-                                    smartNotifyUartDataListener.onSmartNotifyBindListener(device.getBleAddress(), Integer.parseInt(HexUtil.encodeHexStr(values.get(0)), 16), "");
+                                    if (smartNotifyBindPuListener != null) {
+                                        smartNotifyBindPuListener.notifyBindPuListener(device.getBleAddress(), Integer.parseInt(HexUtil.encodeHexStr(values.get(0)), 16), "");
+                                    }
                                 }
                                 break;
                             case 0x09:
@@ -281,7 +289,7 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
         @Override
         public void onWriteSuccess(BleModelDevice device, BluetoothGattCharacteristic characteristic) {
             if (smartNotifyUartDataListener != null) {
-                smartNotifyUartDataListener.onNotifyUartData(device.getBleAddress(), 100, "Device is not Connect");
+                smartNotifyUartDataListener.onNotifyUartDataListener(device.getBleAddress(), 100, "SUCCESS", "");
             }
         }
 

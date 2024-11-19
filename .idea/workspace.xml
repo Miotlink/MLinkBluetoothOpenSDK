@@ -40,34 +40,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6540b3ea-f2ab-4a4b-9ab7-9c128c5b4099" name="Default Changelist" comment="修改类">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/listener/SmartNotifyBindPuListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_6_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_4_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_jvm_1_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_6_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_6_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_2_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_13_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_13_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_databinding_viewbinding_8_4_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_6_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_6_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_6_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_6_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_6_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_6_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_2_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_CymChad_BaseRecyclerViewAdapterHelper_3_0_10_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_guolindev_permissionx_permissionx_1_8_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__me_jessyan_autosize_1_1_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_6_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm_1_6_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.androidTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.androidTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.unitTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.unitTest.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/adapter/ScanDeviceAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/application/SmartApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/base/BaseActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/ui/DeviceControlActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/ui/DeviceInfoActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/ui/DeviceSmartConfigActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/ui/LoadingActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/ui/ScanDeviceActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/utils/DateUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/view/LoadingViewDialog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/view/OSUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/view/RadarView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/view/StatusBarUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_ble_control.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_ble_details.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_loading.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_pro_test_ble.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sacn_device.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sn_cmei_ble.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_wifi_device.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_loading_view.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_scan_device.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/MLinkSmartBluetoothSDK.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/MLinkSmartBluetoothSDK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleRequestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleRequestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleSmartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleSmartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/listener/SmartNotifyUartDataListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/listener/SmartNotifyUartDataListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,6 +215,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SHOW_ALL_PROCESSES": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
@@ -219,11 +237,11 @@
       <recent name="G:\SDK\ISmartBluetoothSDK\miot-blue-smart\src\main\java\com" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.miotlink.bluetooth.listener" />
       <recent name="com.miotlink.smart" />
       <recent name="com.miotlink.smart.bluetooth" />
       <recent name="com.miotlink.bluetooth.command" />
       <recent name="com.miotlink.ble.utils" />
-      <recent name="com.miotlink.utils" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -842,7 +860,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731980611744</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="修改类">
+      <option name="closed" value="true" />
+      <created>1731983584528</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1731983584528</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -870,17 +896,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java</url>
-          <line>102</line>
+          <line>105</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -895,7 +911,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java</url>
-          <line>259</line>
+          <line>263</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -910,7 +926,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleRequestServiceImpl.java</url>
-          <line>118</line>
+          <line>119</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -16,6 +16,7 @@ import com.miotlink.bluetooth.impl.BleSmartService;
 import com.miotlink.bluetooth.listener.BleDeviceScanListener;
 import com.miotlink.bluetooth.listener.BleSmartConfigListener;
 import com.miotlink.bluetooth.listener.BleSmartListener;
+import com.miotlink.bluetooth.listener.SmartNotifyBindPuListener;
 import com.miotlink.bluetooth.listener.SmartNotifyDeviceConnectListener;
 import com.miotlink.bluetooth.listener.SmartNotifyOTAListener;
 import com.miotlink.bluetooth.listener.SmartNotifyUartDataListener;
@@ -271,9 +272,9 @@ public class MLinkSmartBluetoothSDK {
         }
     }
 
-    public void bindPu(String macCode) {
+    public void bindPu(String macCode,SmartNotifyBindPuListener smartNotifyBindPuListener) {
         try {
-            bleSmartService.bindPu(macCode);
+            bleSmartService.bindPu(macCode,smartNotifyBindPuListener);
         } catch (Exception e) {
             e.printStackTrace();
         }

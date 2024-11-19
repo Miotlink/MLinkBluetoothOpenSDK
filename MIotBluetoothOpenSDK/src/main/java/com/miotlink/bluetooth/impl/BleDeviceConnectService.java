@@ -1,6 +1,7 @@
 package com.miotlink.bluetooth.impl;
 
 
+import com.miotlink.bluetooth.listener.SmartNotifyBindPuListener;
 import com.miotlink.bluetooth.listener.SmartNotifyDeviceConnectListener;
 import com.miotlink.bluetooth.listener.SmartNotifyUartDataListener;
 import com.miotlink.bluetooth.model.BleModelDevice;
@@ -27,6 +28,6 @@ import java.util.List;
 
     public void unBindPu(String macCode, int kindId, int modelId) throws Exception;
 
-    public void bindPu(String macCode)throws Exception;
+    public void bindPu(String macCode, SmartNotifyBindPuListener smartNotifyBindPuListener)throws Exception;
     public void disconnect(String macCode) throws Exception;
 }

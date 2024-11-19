@@ -9,6 +9,7 @@ import android.os.Build;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.miotlink.bluetooth.listener.SmartNotifyBindPuListener;
 import com.miotlink.bluetooth.listener.SmartNotifyDeviceConnectListener;
 import com.miotlink.bluetooth.listener.BleDeviceScanListener;
 import com.miotlink.bluetooth.listener.BleSmartConfigListener;
@@ -305,8 +306,8 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
     }
 
     @Override
-    public void bindPu(String macCode) throws Exception {
-        bleDeviceConnectService.bindPu(macCode);
+    public void bindPu(String macCode, SmartNotifyBindPuListener smartNotifyBindPuListener) throws Exception {
+        bleDeviceConnectService.bindPu(macCode,smartNotifyBindPuListener);
     }
 
     @Override

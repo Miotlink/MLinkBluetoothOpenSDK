@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 
+import com.miotlink.bluetooth.listener.SmartNotifyBindPuListener;
 import com.miotlink.bluetooth.listener.SmartNotifyDeviceConnectListener;
 import com.miotlink.bluetooth.listener.BleDeviceScanListener;
 import com.miotlink.bluetooth.listener.BleSmartConfigListener;
@@ -101,7 +102,7 @@ public interface BleSmartService {
 
     public void stopOta(String macCode) throws Exception;
 
-    public void bindPu(String macCode) throws Exception;
+    public void bindPu(String macCode, SmartNotifyBindPuListener smartNotifyBindPuListener) throws Exception;
 
     public void unBindPu(String macCode, int kindId, int modelId) throws Exception;
 
