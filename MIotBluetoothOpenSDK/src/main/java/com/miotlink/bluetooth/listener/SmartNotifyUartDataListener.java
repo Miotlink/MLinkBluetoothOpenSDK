@@ -6,9 +6,6 @@ package com.miotlink.bluetooth.listener;
  */
 public interface SmartNotifyUartDataListener {
 
-    public void onSmartNotifyBindListener(String macCode, int errorCode, String errorMessage);
-
     public void onSmartNotifyDeviceVersionListener(String macCode, int version);
-
     public void onNotifyUartDataListener(String macCode, int errorCode, String errorMessage,String command);
 }
