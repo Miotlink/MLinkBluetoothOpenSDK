@@ -1,6 +1,10 @@
 package com.miotlink.bluetooth.utils;
 
 
+import androidx.annotation.NonNull;
+
+import java.io.UnsupportedEncodingException;
+
 /**
  * @Description: 十六进制转换类
  * @author: <a href="http://www.xiaoyaoyou1212.com">DAWI</a>
@@ -307,5 +311,33 @@ public final class HexUtil {
             return lg;
         }
     }
+
+    public static byte uniteBytes(byte src0, byte src1) {
+        byte _b0 = Byte.decode("0x" + new String(new byte[] { src0 }))
+                .byteValue();
+        _b0 = (byte) (_b0 << 4);
+        byte _b1 = Byte.decode("0x" + new String(new byte[] { src1 }))
+                .byteValue();
+        byte ret = (byte) (_b0 ^ _b1);
+        return ret;
+    }
+
+    @NonNull
+    public static byte[] hexString2Bytes(String src) {
+        src = src.replace(" ", "");
+        byte[] ret = new byte[src.length() / 2];
+        byte[] tmp;
+        try {
+            tmp = src.getBytes("ISO-8859-1");
+            for (int i = 0; i < src.length() / 2; i++) {
+                ret[i] = uniteBytes(tmp[i * 2], tmp[i * 2 + 1]);
+            }
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
 
 }

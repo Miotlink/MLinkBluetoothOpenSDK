@@ -80,6 +80,8 @@ public interface BleSmartService {
 
     public void onStopSmartConfig(String macCode);
 
+    public boolean isConnect(String macCode);
+
     /**
      * 发送串口数据
      *

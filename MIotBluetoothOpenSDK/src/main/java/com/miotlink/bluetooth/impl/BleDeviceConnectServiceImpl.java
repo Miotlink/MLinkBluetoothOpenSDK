@@ -124,6 +124,18 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
     }
 
     @Override
+    public boolean isConnect(String macCode) {
+        BleModelDevice bleModelDevice = BluetoothDeviceStore.getInstance().getBleModelDevice(macCode);
+        if (bleModelDevice != null) {
+            BleModelDevice connectedDevice = ble.getConnectedDevice(bleModelDevice.getBleAddress());
+            if (connectedDevice != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public List<BleModelDevice> getConnectBleDevices() {
         return ble.getConnectedDevices();
     }

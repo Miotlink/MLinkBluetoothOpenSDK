@@ -21,8 +21,8 @@ import com.miotlink.bluetooth.listener.SmartNotifyDeviceConnectListener;
 import com.miotlink.bluetooth.listener.SmartNotifyOTAListener;
 import com.miotlink.bluetooth.listener.SmartNotifyUartDataListener;
 import com.miotlink.bluetooth.model.BleModelDevice;
-import com.miotlink.bluetooth.service.Ble;
 import com.miotlink.bluetooth.service.BleLog;
+import com.miotlink.bluetooth.utils.HexUtil;
 
 import org.json.JSONObject;
 
@@ -188,6 +188,11 @@ public class MLinkSmartBluetoothSDK {
         bleSmartService.onStopSmartConfig(macAddress);
     }
 
+    /**
+     * 检查蓝牙权限是否开启
+     *
+     * @return
+     */
     public boolean checkPermissions() {
         return bleSmartService.checkPermission();
     }
@@ -203,6 +208,12 @@ public class MLinkSmartBluetoothSDK {
         bleSmartService.openBluetooth();
     }
 
+    /**
+     * 获取扫描的设备信息
+     *
+     * @param macCode
+     * @return
+     */
     public BleModelDevice getScanDevice(String macCode) {
         return bleSmartService.getBleModelDevice(macCode);
     }
@@ -233,11 +244,34 @@ public class MLinkSmartBluetoothSDK {
         activity.startActivityForResult(enableBtIntent, requestCode);
     }
 
+    /**
+     * 获取蓝牙开关状态
+     *
+     * @return
+     */
     public boolean isBleEnable() {
         return bleSmartService.isBleEnable();
     }
 
+    /**
+     * 获取蓝牙连接状态
+     *
+     * @param macCode
+     * @return
+     */
+    public boolean isConnect(String macCode) {
 
+        return bleSmartService.isConnect(macCode);
+    }
+
+
+    /**
+     * 发送数据
+     *
+     * @param macCode
+     * @param uartData
+     * @param smartNotifyListener
+     */
     @Deprecated
     public void send(String macCode, String uartData, SmartNotifyUartDataListener smartNotifyListener) {
         try {
@@ -249,6 +283,30 @@ public class MLinkSmartBluetoothSDK {
 
     }
 
+    /**
+     * 发送16进制的数据
+     *
+     * @param macCode
+     * @param hexUartData
+     * @param smartNotifyListener
+     */
+    public void sendHexStr(String macCode, String hexUartData, SmartNotifyUartDataListener smartNotifyListener) {
+        try {
+            bleSmartService.setSmartNotifyUartDataListener(smartNotifyListener);
+            bleSmartService.send(macCode, HexUtil.hexString2Bytes(hexUartData));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 发送蓝牙数据
+     *
+     * @param macCode
+     * @param uartData
+     * @param smartNotifyListener
+     */
     public void send(String macCode, byte[] uartData, SmartNotifyUartDataListener smartNotifyListener) {
         try {
             bleSmartService.setSmartNotifyUartDataListener(smartNotifyListener);
@@ -272,9 +330,15 @@ public class MLinkSmartBluetoothSDK {
         }
     }
 
-    public void bindPu(String macCode,SmartNotifyBindPuListener smartNotifyBindPuListener) {
+    /**
+     * 绑定设备
+     *
+     * @param macCode
+     * @param smartNotifyBindPuListener
+     */
+    public void bindPu(String macCode, SmartNotifyBindPuListener smartNotifyBindPuListener) {
         try {
-            bleSmartService.bindPu(macCode,smartNotifyBindPuListener);
+            bleSmartService.bindPu(macCode, smartNotifyBindPuListener);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -290,15 +354,6 @@ public class MLinkSmartBluetoothSDK {
 
 
     /**
-     * 升级OTA通知
-     *
-     * @param smartNotifyOTAListener
-     */
-    public void setSmartNotifyOTAListener(SmartNotifyOTAListener smartNotifyOTAListener) {
-
-    }
-
-    /**
      * 停止扫描
      */
     public void onStopScan() {
@@ -310,6 +365,11 @@ public class MLinkSmartBluetoothSDK {
     }
 
 
+    /**
+     * 断开连接
+     *
+     * @param macCode
+     */
     public void disConnect(String macCode) {
         try {
             bleSmartService.onDisConnect(macCode);
@@ -318,6 +378,9 @@ public class MLinkSmartBluetoothSDK {
         }
     }
 
+    /**
+     * 销毁蓝牙
+     */
     public void onDestory() {
         try {
             bleSmartService.onDestory();

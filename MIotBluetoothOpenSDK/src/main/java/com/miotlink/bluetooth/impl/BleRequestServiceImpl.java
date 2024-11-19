@@ -307,7 +307,7 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
 
     @Override
     public void bindPu(String macCode, SmartNotifyBindPuListener smartNotifyBindPuListener) throws Exception {
-        bleDeviceConnectService.bindPu(macCode,smartNotifyBindPuListener);
+        bleDeviceConnectService.bindPu(macCode, smartNotifyBindPuListener);
     }
 
     @Override
@@ -318,6 +318,11 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
     @Override
     public List<BleModelDevice> getConnectBleDevices() {
         return bleDeviceConnectService.getConnectBleDevices();
+    }
+
+    @Override
+    public boolean isConnect(String macCode) {
+        return bleDeviceConnectService.isConnect(macCode);
     }
 
     @Override

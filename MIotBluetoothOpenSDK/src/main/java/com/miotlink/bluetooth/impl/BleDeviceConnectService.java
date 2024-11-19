@@ -24,6 +24,8 @@ import java.util.List;
 
     List<BleModelDevice> getConnectBleDevices();
 
+    boolean isConnect(String macCode);
+
     public void getVersion(String macCode) throws Exception;
 
     public void unBindPu(String macCode, int kindId, int modelId) throws Exception;

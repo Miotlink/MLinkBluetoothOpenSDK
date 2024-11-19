@@ -41,7 +41,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6540b3ea-f2ab-4a4b-9ab7-9c128c5b4099" name="Default Changelist" comment="修改类">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/MLinkSmartBluetoothSDK.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/MLinkSmartBluetoothSDK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleRequestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleRequestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleSmartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleSmartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/utils/HexUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/utils/HexUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -785,22 +790,6 @@
       <option name="project" value="LOCAL" />
       <updated>1685439636123</updated>
     </task>
-    <task id="LOCAL-00045" summary="修改类">
-      <option name="closed" value="true" />
-      <created>1731979233417</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1731979233417</updated>
-    </task>
-    <task id="LOCAL-00046" summary="修改类">
-      <option name="closed" value="true" />
-      <created>1731980606878</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1731980606878</updated>
-    </task>
     <task id="LOCAL-00047" summary="修改类">
       <option name="closed" value="true" />
       <created>1731980611744</created>
@@ -833,7 +822,23 @@
       <option name="project" value="LOCAL" />
       <updated>1731986663948</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="修改类">
+      <option name="closed" value="true" />
+      <created>1731987606786</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1731987606786</updated>
+    </task>
+    <task id="LOCAL-00052" summary="修改类">
+      <option name="closed" value="true" />
+      <created>1731988163499</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1731988163499</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -871,7 +876,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java</url>
-          <line>259</line>
+          <line>271</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
