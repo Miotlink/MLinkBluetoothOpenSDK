@@ -217,6 +217,7 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
             if (connectedDevice == null) {
                 return;
             }
+            ble.cancelConnecting(connectedDevice);
             ble.disconnect(connectedDevice);
         }
     }
