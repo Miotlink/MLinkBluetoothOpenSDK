@@ -284,9 +284,9 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
     BleWriteCallback<BleModelDevice> bleModelDeviceBleWriteCallback = new BleWriteCallback<BleModelDevice>() {
         @Override
         public void onWriteSuccess(BleModelDevice device, BluetoothGattCharacteristic characteristic) {
-            if (smartNotifyUartDataListener != null) {
-                smartNotifyUartDataListener.onNotifyUartDataListener(device.getBleAddress(), 100, "SUCCESS", "");
-            }
+//            if (smartNotifyUartDataListener != null) {
+//                smartNotifyUartDataListener.onNotifyUartDataListener(device.getBleAddress(), 100, "SUCCESS", "");
+//            }
         }
 
         @Override
