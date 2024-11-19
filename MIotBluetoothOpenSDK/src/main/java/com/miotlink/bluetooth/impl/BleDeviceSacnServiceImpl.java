@@ -15,7 +15,7 @@ import com.miotlink.bluetooth.service.Ble;
  * USER：create by qiaozhuang on 2024/10/14 14:36
  * EMAIL:qiaozhuang@miotlink.com
  */
- class BleDeviceSacnServiceImpl implements BleDeviceScanService {
+class BleDeviceSacnServiceImpl implements BleDeviceScanService {
     Ble<BleModelDevice> ble = null;
     BleFactory bleFactory = new BleFactory<BleModelDevice>() {
         @Override
@@ -24,6 +24,7 @@ import com.miotlink.bluetooth.service.Ble;
         }
     };
     BleDeviceScanListener bleDeviceScanListener = null;
+
 
     @Override
     public void startScan(BleDeviceScanListener bleDeviceScanListener) throws Exception {
@@ -43,6 +44,12 @@ import com.miotlink.bluetooth.service.Ble;
         }
         ble.startScan(bleScanCallback);
     }
+
+    @Override
+    public boolean isBleEnable() {
+        return Ble.getInstance().isBleEnable();
+    }
+
 
     @Override
     public void startScan(long scanPeriod, BleDeviceScanListener bleDeviceScanListener) throws Exception {

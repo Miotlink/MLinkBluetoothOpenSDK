@@ -315,7 +315,12 @@ public final class BleRequestServiceImpl implements BleSmartService, Ble.InitCal
     }
 
     @Override
-    public List<BleModelDevice> getConnectBleDevices() throws Exception {
+    public List<BleModelDevice> getConnectBleDevices() {
         return bleDeviceConnectService.getConnectBleDevices();
+    }
+
+    @Override
+    public boolean isBleEnable() {
+        return bleDeviceScanService.isBleEnable();
     }
 }

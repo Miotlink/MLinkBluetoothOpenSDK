@@ -105,5 +105,7 @@ public interface BleSmartService {
 
     public void unBindPu(String macCode, int kindId, int modelId) throws Exception;
 
-    List<BleModelDevice> getConnectBleDevices()throws Exception;
+    List<BleModelDevice> getConnectBleDevices();
+
+    boolean isBleEnable();
 }

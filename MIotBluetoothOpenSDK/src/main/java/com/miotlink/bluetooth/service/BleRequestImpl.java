@@ -210,8 +210,8 @@ public final class BleRequestImpl<T extends BleDevice> {
                                             BluetoothGattCharacteristic characteristic) {
             synchronized (locker) {
                 if (gatt == null || gatt.getDevice() == null)return;
-                BleLog.d(TAG, gatt.getDevice().getAddress() + " -- onCharacteristicChanged: "
-                        + (characteristic.getValue() != null ? ByteUtils.toHexString(characteristic.getValue()) : ""));
+//                BleLog.d(TAG, gatt.getDevice().getAddress() + " -- onCharacteristicChanged: "
+//                        + (characteristic.getValue() != null ? ByteUtils.toHexString(characteristic.getValue()) : ""));
                 T bleDevice = getBleDeviceInternal(gatt.getDevice().getAddress());
                 if (notifyWrapperCallback != null) {
                     notifyWrapperCallback.onChanged(bleDevice, characteristic);

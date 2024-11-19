@@ -39,12 +39,11 @@ public class IMessageProtocol implements IReaderProtocol {
             for (int i = 0; i < dataNum; i++) {
                 len = len + i;
                 byte[] value = new byte[bodys[len]];
-                System.arraycopy(bodys, len+1, value, 0, bodys[len]);
+                System.arraycopy(bodys, len + 1, value, 0, bodys[len]);
                 mapValue.put(i, value);
                 len = len + bodys[len];
             }
             commmandBean.setValues(mapValue);
-            BleLog.e("command", commmandBean.toString());
         }
         return commmandBean;
     }

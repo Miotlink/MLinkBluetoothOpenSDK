@@ -106,10 +106,6 @@ public class MLinkSmartBluetoothSDK {
 
     }
 
-    public List<BleModelDevice> getConnectBleDevices(){
-
-    }
-
 
     /**
      * 扫描蓝牙设备
@@ -227,13 +223,17 @@ public class MLinkSmartBluetoothSDK {
         }
     }
 
+    public List<BleModelDevice> getConnectBleDevices() {
+        return bleSmartService.getConnectBleDevices();
+    }
 
     public void startBluetooth(Activity activity, int requestCode) {
         Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        if (ActivityCompat.checkSelfPermission(Ble.getInstance().getContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         activity.startActivityForResult(enableBtIntent, requestCode);
+    }
+
+    public boolean isBleEnable() {
+        return bleSmartService.isBleEnable();
     }
 
 
