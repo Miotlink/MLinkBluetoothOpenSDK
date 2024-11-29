@@ -40,9 +40,6 @@ class BluetoothScannerImplLollipop extends BleScannerCompat {
             scanner = bluetoothAdapter.getBluetoothLeScanner();
         }
         setScanSettings();
-        if (ActivityCompat.checkSelfPermission(Ble.getInstance().getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         scanner.startScan(filters, scanSettings, scannerCallback);
     }
 
@@ -51,9 +48,7 @@ class BluetoothScannerImplLollipop extends BleScannerCompat {
         if (scanner == null) {
             scanner = bluetoothAdapter.getBluetoothLeScanner();
         }
-        if (ActivityCompat.checkSelfPermission(Ble.getInstance().getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
+
         scanner.stopScan(scannerCallback);
         super.stopScan();
     }

@@ -16,18 +16,12 @@ class BluetoothScannerImplJB extends BleScannerCompat {
     @Override
     public void startScan(ScanWrapperCallback scanWrapperCallback) {
         super.startScan(scanWrapperCallback);
-        if (ActivityCompat.checkSelfPermission(Ble.getInstance().getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         bluetoothAdapter.startLeScan(leScanCallback);
     }
 
     @Override
     public void stopScan() {
         super.stopScan();
-        if (ActivityCompat.checkSelfPermission(Ble.getInstance().getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         bluetoothAdapter.stopLeScan(leScanCallback);
     }
 
