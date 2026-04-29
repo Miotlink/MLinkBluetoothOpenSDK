@@ -15,7 +15,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -41,7 +41,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "com.alibaba:fastjson:1.2.73"
-    implementation 'com.github.li-xiaojun:XPopup:2.9.19'
-    implementation "com.alibaba:fastjson:1.2.73"
+
 //    api(name: 'miot-blue-smart-release', ext: 'aar')
 }

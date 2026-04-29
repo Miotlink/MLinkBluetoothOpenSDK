@@ -4,7 +4,7 @@ package com.miotlink.bluetooth.command;
 import android.text.TextUtils;
 
 import com.miotlink.bluetooth.service.BleLog;
-import com.miotlink.bluetooth.utils.AesEncryptUtil;
+import com.miotlink.bluetooth.utils.AesUtils;
 import com.miotlink.bluetooth.utils.BlueTools;
 import com.miotlink.bluetooth.utils.CRC16Utils;
 import com.miotlink.bluetooth.utils.HexUtil;
@@ -14,7 +14,6 @@ import org.json.JSONObject;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -61,7 +60,10 @@ public class AbsMessage implements IMessage {
                 throw new Exception("Data is error");
             }
             int mtu = jsonObject1.getInt("mtu");
-            String mac = jsonObject1.getString("mac");
+            String mac = jsonObject1.optString("mac");
+            if (TextUtils.isEmpty(mac)) {
+                mac = jsonObject1.optString("macCode");
+            }
             String command = jsonObject1.getString("command");
             List<byte[]> list = new ArrayList<>();
             int timeId = (int) System.currentTimeMillis() % 65536;
@@ -71,7 +73,7 @@ public class AbsMessage implements IMessage {
                 key = mac.replaceAll(":", "").toUpperCase();
             }
             key += timeIdHex.toUpperCase();
-            byte[] encrypt = AesEncryptUtil.encrypt(key, command);
+            byte[] encrypt = AesUtils.encrypt(key, command);
             List<byte[]> networkInfos = PacketUtils.getPackets(mtu - 12, encrypt);
             if (networkInfos != null) {
                 if (networkInfos.size() == 1) {
@@ -91,7 +93,7 @@ public class AbsMessage implements IMessage {
                     buffer.put((byte) 0x0D);
                     buffer.put((byte) 0x0A);
                     list.add(buffer.array());
-                } else if (networkInfos.size() > 2) {
+                } else if (networkInfos.size() > 1) {
                     for (int i = 0; i < networkInfos.size(); i++) {
                         byte[] bytes = networkInfos.get(i);
                         byte type = 0x00;
@@ -119,8 +121,8 @@ public class AbsMessage implements IMessage {
                         buffer.put((byte) 0x0A);
                         list.add(buffer.array());
                     }
-                    return list;
                 }
+                return list;
             }
         }
         return new ArrayList<>();

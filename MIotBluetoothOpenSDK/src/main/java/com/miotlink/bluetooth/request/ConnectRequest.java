@@ -20,20 +20,22 @@ import com.miotlink.bluetooth.service.BleStates;
 import com.miotlink.bluetooth.utils.ThreadUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Implement(ConnectRequest.class)
 public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallback<T> {
 
     private static final String TAG = "ConnectRequest";
-    private final Map<String, T> devices = new HashMap<>();
-    private final Map<String, T> connectedDevices = new HashMap<>();
+    private final Map<String, T> devices = new ConcurrentHashMap<>();
+    private final Map<String, T> connectedDevices = new ConcurrentHashMap<>();
     private final BleConnectsDispatcher<T> dispatcher = new BleConnectsDispatcher<>();
     private final BleRequestImpl<T> bleRequest = BleRequestImpl.getBleRequest();
-    private BleConnectCallback<T> connectCallback;
-    private final List<BleConnectCallback<T>> connectInnerCallbacks = new ArrayList<>();
+    private final Map<String, BleConnectCallback<T>> connectCallbackMap = new ConcurrentHashMap<>();
+    private volatile BleConnectCallback<T> defaultConnectCallback;
+    private final List<BleConnectCallback<T>> connectInnerCallbacks = new CopyOnWriteArrayList<>();
     private final BleWrapperCallback<T> bleWrapperCallback = Ble.options().getBleWrapperCallback();
 
     protected ConnectRequest() {
@@ -44,14 +46,17 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
     }
 
     public boolean connect(T device){
-        return connect(device, connectCallback);
+        return connect(device, defaultConnectCallback);
     }
 
     public synchronized boolean connect(T device, BleConnectCallback<T> callback) {
-        connectCallback = callback;
+        defaultConnectCallback = callback;
         if (device == null){
             doConnectException(null, BleStates.DeviceNull);
             return false;
+        }
+        if (callback != null) {
+            connectCallbackMap.put(device.getBleAddress(), callback);
         }
         if (device.isConnecting()){
             return false;
@@ -71,6 +76,7 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
     }
 
     private void doConnectException(final T device, final int errorCode){
+        final BleConnectCallback<T> connectCallback = getConnectCallback(device);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -105,6 +111,7 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
     public void cancelConnecting(T device) {
         boolean connecting = device.isConnecting();
         boolean ready_connect = dispatcher.isContains(device);
+        BleConnectCallback<T> connectCallback = getConnectCallback(device);
         if (connecting || ready_connect){
             if (connectCallback != null){
                 BleLog.d(TAG, "cancel connecting device："+device.getBleName());
@@ -143,7 +150,7 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
      * @param device 设备对象
      */
     public void disconnect(BleDevice device) {
-        disconnect(device, connectCallback);
+        disconnect(device, getConnectCallback((T) device));
     }
 
     /**
@@ -152,7 +159,10 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
      */
     public void disconnect(BleDevice device, BleConnectCallback<T> callback) {
         if (device != null){
-            connectCallback = callback;
+            defaultConnectCallback = callback;
+            if (callback != null) {
+                connectCallbackMap.put(device.getBleAddress(), callback);
+            }
             device.setAutoConnect(false);
             bleRequest.disconnect(device.getBleAddress());
         }
@@ -166,6 +176,7 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
     public void closeBluetooth(){
         if (!connectedDevices.isEmpty()){
             for (T device: connectedDevices.values()) {
+                BleConnectCallback<T> connectCallback = getConnectCallback(device);
                 if (connectCallback != null){
                     device.setConnectionState(BleDevice.DISCONNECT);
                     BleLog.e(TAG, "System Bluetooth is disconnected>>>> "+device.getBleName());
@@ -175,6 +186,7 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
             bleRequest.close();
             connectedDevices.clear();
             devices.clear();
+            connectCallbackMap.clear();
         }
     }
 
@@ -195,9 +207,11 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
         }else if(bleDevice.isDisconnected()) {
             connectedDevices.remove(bleDevice.getBleAddress());
             devices.remove(bleDevice.getBleAddress());
+            connectCallbackMap.remove(bleDevice.getBleAddress());
             BleLog.d(TAG, "disconnected>>>> "+bleDevice.getBleName());
         }
         runOnUiThread(() -> {
+            BleConnectCallback<T> connectCallback = getConnectCallback(bleDevice);
             if (connectCallback != null){
                 connectCallback.onConnectionChanged(bleDevice);
             }
@@ -226,6 +240,7 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
         if (bleDevice == null)return;
         BleLog.d(TAG, "onReady>>>> "+bleDevice.getBleName());
         runOnUiThread(() -> {
+            BleConnectCallback<T> connectCallback = getConnectCallback(bleDevice);
             if (connectCallback != null){
                 connectCallback.onReady(bleDevice);
             }
@@ -238,6 +253,7 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
     @Override
     public void onServicesDiscovered(final T device, BluetoothGatt gatt) {
         BleLog.d(TAG, "onServicesDiscovered>>>> "+device.getBleName());
+        BleConnectCallback<T> connectCallback = getConnectCallback(device);
         if (connectCallback != null){
             connectCallback.onServicesDiscovered(device, gatt);
         }
@@ -275,6 +291,15 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
     }
 
     public void cancelConnectCallback(){
-        connectCallback = null;
+        defaultConnectCallback = null;
+        connectCallbackMap.clear();
+    }
+
+    private BleConnectCallback<T> getConnectCallback(T device) {
+        if (device == null) {
+            return defaultConnectCallback;
+        }
+        BleConnectCallback<T> callback = connectCallbackMap.get(device.getBleAddress());
+        return callback != null ? callback : defaultConnectCallback;
     }
 }

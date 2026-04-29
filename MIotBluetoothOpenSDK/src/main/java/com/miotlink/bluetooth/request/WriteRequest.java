@@ -16,8 +16,10 @@ import com.miotlink.bluetooth.service.BleRequestImpl;
 import com.miotlink.bluetooth.utils.ThreadUtils;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by LiuLei on 2017/10/23.
@@ -25,7 +27,7 @@ import java.util.concurrent.Callable;
 @Implement(WriteRequest.class)
 public class WriteRequest<T extends BleDevice> implements WriteWrapperCallback<T> {
 
-    private BleWriteCallback<T> bleWriteCallback;
+    private final Map<String, BleWriteCallback<T>> writeCallbackMap = new ConcurrentHashMap<>();
     private BleWriteEntityCallback<T> bleWriteEntityCallback;
     private boolean isWritingEntity;
     private boolean isAutoWriteMode = false;//当前是否为自动写入模式
@@ -37,13 +39,17 @@ public class WriteRequest<T extends BleDevice> implements WriteWrapperCallback<T
     }
 
     public boolean write(T device, byte[] data, BleWriteCallback<T> callback) {
-        this.bleWriteCallback = callback;
+        if (device != null && callback != null) {
+            writeCallbackMap.put(device.getBleAddress(), callback);
+        }
         BleRequestImpl bleRequest = BleRequestImpl.getBleRequest();
         return bleRequest.writeCharacteristic(device.getBleAddress(), data);
     }
 
     public boolean writeByUuid(T device, byte[] data, UUID serviceUUID, UUID characteristicUUID, BleWriteCallback<T> callback) {
-        this.bleWriteCallback = callback;
+        if (device != null && callback != null) {
+            writeCallbackMap.put(device.getBleAddress(), callback);
+        }
         BleRequestImpl bleRequest = BleRequestImpl.getBleRequest();
         return bleRequest.writeCharacteristicByUuid(device.getBleAddress(), data, serviceUUID, characteristicUUID);
     }
@@ -155,6 +161,7 @@ public class WriteRequest<T extends BleDevice> implements WriteWrapperCallback<T
 
     @Override
     public void onWriteSuccess(T device, BluetoothGattCharacteristic characteristic) {
+        BleWriteCallback<T> bleWriteCallback = device == null ? null : writeCallbackMap.remove(device.getBleAddress());
         if (bleWriteCallback != null) {
             bleWriteCallback.onWriteSuccess(device, characteristic);
         }
@@ -171,6 +178,7 @@ public class WriteRequest<T extends BleDevice> implements WriteWrapperCallback<T
 
     @Override
     public void onWriteFailed(T device, int failedCode) {
+        BleWriteCallback<T> bleWriteCallback = device == null ? null : writeCallbackMap.remove(device.getBleAddress());
         if (bleWriteCallback != null) {
             bleWriteCallback.onWriteFailed(device, failedCode);
         }

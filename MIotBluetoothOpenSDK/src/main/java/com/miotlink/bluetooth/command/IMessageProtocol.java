@@ -1,7 +1,5 @@
 package com.miotlink.bluetooth.command;
 
-import com.miotlink.bluetooth.service.BleLog;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.util.HashMap;
@@ -14,7 +12,7 @@ import java.util.Map;
 public class IMessageProtocol implements IReaderProtocol {
     @Override
     public CommmandBean getCommand(byte[] bytes) throws Exception {
-        if (bytes == null) {
+        if (bytes == null || bytes.length < 9) {
             throw new Exception("value is empty");
         }
         CommmandBean commmandBean = new CommmandBean();
@@ -22,26 +20,35 @@ public class IMessageProtocol implements IReaderProtocol {
         int headValue = dataInputStream.readShort();
         if (headValue == 0x6667) {
             commmandBean.setHead(headValue);
-            int length = dataInputStream.readByte();
+            int length = dataInputStream.readUnsignedByte();
             commmandBean.setBodyLen(length);
-            if (length > bytes.length) {
+            if (length < 4 || length + 5 > bytes.length) {
                 throw new Exception(" 数据异常");
             }
             commmandBean.setTimestamp(dataInputStream.readShort());
-            commmandBean.setCode(dataInputStream.readByte());
-            byte dataNum = dataInputStream.readByte();
-            commmandBean.setDataNum(dataNum);
-            byte[] bodys = new byte[length - 6];
-            dataInputStream.read(bodys);
+            commmandBean.setCode(dataInputStream.readUnsignedByte());
+            int dataNum = dataInputStream.readUnsignedByte();
+            commmandBean.setDataNum((byte) dataNum);
+            int bodyLen = length - 4;
+            byte[] bodys = new byte[bodyLen];
+            dataInputStream.readFully(bodys);
             commmandBean.setBytes(bodys);
             Map<Integer, byte[]> mapValue = new HashMap<>();
             int len = 0;
             for (int i = 0; i < dataNum; i++) {
-                len = len + i;
-                byte[] value = new byte[bodys[len]];
-                System.arraycopy(bodys, len + 1, value, 0, bodys[len]);
+                if (len >= bodys.length) {
+                    throw new Exception(" 数据异常");
+                }
+                int valueLen = bodys[len] & 0xFF;
+                int valueStart = len + 1;
+                int valueEnd = valueStart + valueLen;
+                if (valueEnd > bodys.length) {
+                    throw new Exception(" 数据异常");
+                }
+                byte[] value = new byte[valueLen];
+                System.arraycopy(bodys, valueStart, value, 0, valueLen);
                 mapValue.put(i, value);
-                len = len + bodys[len];
+                len = valueEnd;
             }
             commmandBean.setValues(mapValue);
         }

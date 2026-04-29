@@ -25,6 +25,6 @@ public class BleHandler extends Handler {
     }
 
     private BleHandler(Looper looper){
-        super(Looper.myLooper());
+        super(looper);
     }
 }

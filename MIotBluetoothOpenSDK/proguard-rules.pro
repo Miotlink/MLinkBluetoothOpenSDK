@@ -1,21 +1,16 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# Keep SDK public entrypoint.
+-keep class com.miotlink.MLinkSmartBluetoothSDK { *; }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Keep public listener and callback APIs used by app integrations.
+-keep class com.miotlink.bluetooth.listener.** { *; }
+-keep class com.miotlink.bluetooth.callback.** { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Keep model classes that are commonly exposed across SDK API.
+-keep class com.miotlink.bluetooth.model.** { *; }
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Keep annotations and generic signatures for reflection/serialization.
+-keepattributes Signature,*Annotation*,InnerClasses,EnclosingMethod
+
+# Fastjson compatibility.
+-keep class com.alibaba.fastjson.** { *; }
+-dontwarn com.alibaba.fastjson.**

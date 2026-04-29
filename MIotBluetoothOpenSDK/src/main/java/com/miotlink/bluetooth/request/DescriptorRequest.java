@@ -12,7 +12,9 @@ import com.miotlink.bluetooth.model.BleDevice;
 import com.miotlink.bluetooth.service.Ble;
 import com.miotlink.bluetooth.service.BleRequestImpl;
 
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -21,24 +23,29 @@ import java.util.UUID;
 @Implement(DescriptorRequest.class)
 public class DescriptorRequest<T extends BleDevice> implements DescWrapperCallback<T> {
 
-    private BleReadDescCallback<T> bleReadDescCallback;
-    private BleWriteDescCallback<T> bleWriteDescCallback;
+    private final Map<String, BleReadDescCallback<T>> readDescCallbackMap = new ConcurrentHashMap<>();
+    private final Map<String, BleWriteDescCallback<T>> writeDescCallbackMap = new ConcurrentHashMap<>();
     private final BleWrapperCallback<T> bleWrapperCallback = Ble.options().getBleWrapperCallback();
     private final BleRequestImpl<T> bleRequest = BleRequestImpl.getBleRequest();
 
     public boolean readDes(T device, UUID serviceUUID, UUID characteristicUUID, UUID descriptorUUID, BleReadDescCallback<T> callback){
-        this.bleReadDescCallback = callback;
+        if (device != null && callback != null) {
+            readDescCallbackMap.put(device.getBleAddress(), callback);
+        }
         return bleRequest.readDescriptor(device.getBleAddress(), serviceUUID, characteristicUUID, descriptorUUID);
     }
 
     public boolean writeDes(T device, byte[] data, UUID serviceUUID, UUID characteristicUUID, UUID descriptorUUID, BleWriteDescCallback<T> callback){
-        this.bleWriteDescCallback = callback;
+        if (device != null && callback != null) {
+            writeDescCallbackMap.put(device.getBleAddress(), callback);
+        }
         return bleRequest.writeDescriptor(device.getBleAddress(), data, serviceUUID, characteristicUUID, descriptorUUID);
     }
 
 
     @Override
     public void onDescReadSuccess(T device, BluetoothGattDescriptor descriptor) {
+        BleReadDescCallback<T> bleReadDescCallback = device == null ? null : readDescCallbackMap.remove(device.getBleAddress());
         if (bleReadDescCallback != null){
             bleReadDescCallback.onDescReadSuccess(device, descriptor);
         }
@@ -50,6 +57,7 @@ public class DescriptorRequest<T extends BleDevice> implements DescWrapperCallba
 
     @Override
     public void onDescReadFailed(T device, int failedCode) {
+        BleReadDescCallback<T> bleReadDescCallback = device == null ? null : readDescCallbackMap.remove(device.getBleAddress());
         if (bleReadDescCallback != null){
             bleReadDescCallback.onDescReadFailed(device, failedCode);
         }
@@ -61,6 +69,7 @@ public class DescriptorRequest<T extends BleDevice> implements DescWrapperCallba
 
     @Override
     public void onDescWriteSuccess(T device, BluetoothGattDescriptor descriptor) {
+        BleWriteDescCallback<T> bleWriteDescCallback = device == null ? null : writeDescCallbackMap.remove(device.getBleAddress());
         if (bleWriteDescCallback != null){
             bleWriteDescCallback.onDescWriteSuccess(device, descriptor);
         }
@@ -72,6 +81,7 @@ public class DescriptorRequest<T extends BleDevice> implements DescWrapperCallba
 
     @Override
     public void onDescWriteFailed(T device, int failedCode) {
+        BleWriteDescCallback<T> bleWriteDescCallback = device == null ? null : writeDescCallbackMap.remove(device.getBleAddress());
         if (bleWriteDescCallback != null){
             bleWriteDescCallback.onDescWriteFailed(device, failedCode);
         }

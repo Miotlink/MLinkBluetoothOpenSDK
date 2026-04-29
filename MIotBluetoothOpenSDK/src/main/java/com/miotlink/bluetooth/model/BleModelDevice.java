@@ -4,8 +4,11 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
+
 import androidx.annotation.RequiresApi;
+
 import com.miotlink.bluetooth.utils.BlueTools;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
@@ -33,6 +36,10 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
 
     private String prdouctId = "";
 
+    private String deviceType = "";
+
+    private String imei = "";
+
     /**
      * 设备名称
      */
@@ -42,12 +49,10 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
      * 设备MAC地址
      */
     private String macAddress = "";
-
     /**
      * 标志位
      */
     private int mark = -1;
-
     /**
      * 设备版本号
      */
@@ -103,6 +108,14 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
         return mVersion;
     }
 
+    public String getImei() {
+        return imei;
+    }
+
+    public void setImei(String imei) {
+        this.imei = imei;
+    }
+
     public void setmVersion(int mVersion) {
         this.mVersion = mVersion;
     }
@@ -145,8 +158,18 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
                     DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(bytes));
                     dataInputStream.readShort();
                     mCode = 7;
-                    mVersion = dataInputStream.readUnsignedByte();
-                    mark = dataInputStream.readUnsignedByte();
+                    mVersion = dataInputStream.readByte();
+                    mark = dataInputStream.readByte();
+                    if (mVersion == 0x04) {
+                        byte[] buffer = new byte[15];
+                        dataInputStream.read(buffer);
+                        if (buffer[0]==0x38){
+                            imei = new String(buffer);
+                            macAddress = imei;
+                            return;
+                        }
+                        return;
+                    }
                     dataInputStream.readUnsignedByte();
                     kindId = dataInputStream.readInt();
                     modelId = dataInputStream.readInt();

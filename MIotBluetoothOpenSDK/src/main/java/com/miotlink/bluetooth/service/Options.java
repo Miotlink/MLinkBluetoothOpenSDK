@@ -55,8 +55,6 @@ public class Options {
     public int serviceBindFailedRetryCount = 3;
 
     public int mtu=128;
-
-
     /**
      * 蓝牙连接失败重试次数
      */

@@ -79,8 +79,6 @@ public class ScanRecord implements Parcelable {
 
     private static final String TAG = "ScanRecord";
 
-    // The following data type values are assigned by Bluetooth SIG.
-    // For more details refer to Bluetooth 4.1 specification, Volume 3, Part C, Section 18.
     private static final int DATA_TYPE_FLAGS = 0x01;
     private static final int DATA_TYPE_SERVICE_UUIDS_16_BIT_PARTIAL = 0x02;
     private static final int DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE = 0x03;

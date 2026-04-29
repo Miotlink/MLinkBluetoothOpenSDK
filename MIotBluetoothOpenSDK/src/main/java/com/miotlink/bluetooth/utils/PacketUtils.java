@@ -6,6 +6,12 @@ import java.util.List;
 public class PacketUtils {
 
     public static List<byte[]> getPackets(int mtuLength,byte [] data){
+        if (data == null || data.length == 0) {
+            throw new IllegalArgumentException("data is empty");
+        }
+        if (mtuLength <= 0) {
+            throw new IllegalArgumentException("mtuLength must be greater than 0");
+        }
         List<byte[]> list=new ArrayList<>();
         int length = data.length;
         int availableLength = length;

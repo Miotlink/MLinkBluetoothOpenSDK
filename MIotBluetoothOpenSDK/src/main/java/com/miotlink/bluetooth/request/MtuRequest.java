@@ -9,6 +9,9 @@ import com.miotlink.bluetooth.model.BleDevice;
 import com.miotlink.bluetooth.service.Ble;
 import com.miotlink.bluetooth.service.BleRequestImpl;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  *
  * Created by LiuLei on 2017/10/23.
@@ -16,17 +19,20 @@ import com.miotlink.bluetooth.service.BleRequestImpl;
 @Implement(MtuRequest.class)
 public class MtuRequest<T extends BleDevice> implements MtuWrapperCallback<T> {
 
-    private BleMtuCallback<T> bleMtuCallback;
+    private final Map<String, BleMtuCallback<T>> mtuCallbackMap = new ConcurrentHashMap<>();
     private final BleWrapperCallback<T> bleWrapperCallback = Ble.options().getBleWrapperCallback();
     private final BleRequestImpl<T> bleRequest = BleRequestImpl.getBleRequest();
 
     public boolean setMtu(String address, int mtu, BleMtuCallback<T> callback){
-        this.bleMtuCallback = callback;
+        if (address != null && callback != null) {
+            mtuCallbackMap.put(address, callback);
+        }
         return bleRequest.setMtu(address, mtu);
     }
 
     @Override
     public void onMtuChanged(T device, int mtu, int status) {
+        BleMtuCallback<T> bleMtuCallback = device == null ? null : mtuCallbackMap.remove(device.getBleAddress());
         if(null != bleMtuCallback){
             bleMtuCallback.onMtuChanged(device, mtu, status);
         }

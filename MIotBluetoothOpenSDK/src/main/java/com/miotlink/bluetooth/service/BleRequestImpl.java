@@ -15,6 +15,7 @@
  */
 package com.miotlink.bluetooth.service;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
@@ -27,9 +28,11 @@ import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.os.HandlerCompat;
 
 
@@ -61,7 +64,6 @@ import java.util.Map;
 import java.util.UUID;
 
 
-@SuppressLint("MissingPermission")
 public final class BleRequestImpl<T extends BleDevice> {
 
     private final static String TAG = BleRequestImpl.class.getSimpleName();

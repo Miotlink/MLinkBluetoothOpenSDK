@@ -34,9 +34,11 @@ abstract class Queue {
                             lastTime-=task.getRealTime();
                         }
                     }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
                 } catch (Exception e) {
                     e.printStackTrace();
-                    break;
                 }
             }
         }

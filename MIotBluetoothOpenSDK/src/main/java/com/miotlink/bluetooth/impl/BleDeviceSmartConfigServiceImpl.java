@@ -162,7 +162,7 @@ import java.util.UUID;
         @Override
         public void onWriteSuccess(BleModelDevice device, BluetoothGattCharacteristic characteristic) {
             try {
-                if (bleSmartConfigListener == null) {
+                if (bleSmartConfigListener != null) {
                     bleSmartConfigListener.onLinkSmartConfigListener(7000, "no find device", null);
                 }
             } catch (Exception e) {

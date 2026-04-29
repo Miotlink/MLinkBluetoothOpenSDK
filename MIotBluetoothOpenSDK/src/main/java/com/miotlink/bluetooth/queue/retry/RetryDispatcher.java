@@ -10,8 +10,8 @@ import com.miotlink.bluetooth.service.Ble;
 import com.miotlink.bluetooth.service.BleLog;
 import com.miotlink.bluetooth.service.BleStates;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * author: jerry
@@ -21,12 +21,16 @@ import java.util.Map;
  */
 public class RetryDispatcher<T extends BleDevice> extends BleConnectCallback<T> implements RetryCallback<T> {
     private static final String TAG = "RetryDispatcher";
-    private static RetryDispatcher retryDispatcher;
-    private final Map<String, Integer> deviceRetryMap = new HashMap<>();
+    private static volatile RetryDispatcher retryDispatcher;
+    private final Map<String, Integer> deviceRetryMap = new ConcurrentHashMap<>();
 
     public static <T extends BleDevice>RetryDispatcher<T> getInstance() {
         if (retryDispatcher == null){
-            retryDispatcher = new RetryDispatcher();
+            synchronized (RetryDispatcher.class) {
+                if (retryDispatcher == null) {
+                    retryDispatcher = new RetryDispatcher();
+                }
+            }
         }
         return retryDispatcher;
     }
@@ -56,8 +60,9 @@ public class RetryDispatcher<T extends BleDevice> extends BleConnectCallback<T> 
             String key = device.getBleAddress();
             int lastRetryCount = Ble.options().connectFailedRetryCount;
             if (lastRetryCount <= 0)return;
-            if (deviceRetryMap.containsKey(key)){
-                lastRetryCount = deviceRetryMap.get(key);
+            Integer retryCount = deviceRetryMap.get(key);
+            if (retryCount != null) {
+                lastRetryCount = retryCount;
             }
             if (lastRetryCount <= 0){
                 deviceRetryMap.remove(key);

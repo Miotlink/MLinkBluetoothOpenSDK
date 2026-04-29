@@ -11,7 +11,9 @@ import com.miotlink.bluetooth.model.BleDevice;
 import com.miotlink.bluetooth.service.Ble;
 import com.miotlink.bluetooth.service.BleRequestImpl;
 
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -20,22 +22,27 @@ import java.util.UUID;
 @Implement(ReadRequest.class)
 public class ReadRequest<T extends BleDevice> implements ReadWrapperCallback<T> {
 
-    private BleReadCallback<T> bleReadCallback;
+    private final Map<String, BleReadCallback<T>> readCallbackMap = new ConcurrentHashMap<>();
     private final BleWrapperCallback<T> bleWrapperCallback = Ble.options().getBleWrapperCallback();
     private final BleRequestImpl<T> bleRequest = BleRequestImpl.getBleRequest();
 
     public boolean read(T device, BleReadCallback<T> callback){
-        this.bleReadCallback = callback;
+        if (device != null && callback != null) {
+            readCallbackMap.put(device.getBleAddress(), callback);
+        }
         return bleRequest.readCharacteristic(device.getBleAddress());
     }
 
     public boolean readByUuid(T device, UUID serviceUUID, UUID characteristicUUID, BleReadCallback<T> callback){
-        this.bleReadCallback = callback;
+        if (device != null && callback != null) {
+            readCallbackMap.put(device.getBleAddress(), callback);
+        }
         return bleRequest.readCharacteristicByUuid(device.getBleAddress(), serviceUUID, characteristicUUID);
     }
 
     @Override
     public void onReadSuccess(T device, BluetoothGattCharacteristic characteristic) {
+        BleReadCallback<T> bleReadCallback = device == null ? null : readCallbackMap.remove(device.getBleAddress());
         if(bleReadCallback != null){
             bleReadCallback.onReadSuccess(device, characteristic);
         }
@@ -47,6 +54,7 @@ public class ReadRequest<T extends BleDevice> implements ReadWrapperCallback<T> 
 
     @Override
     public void onReadFailed(T device, int failedCode) {
+        BleReadCallback<T> bleReadCallback = device == null ? null : readCallbackMap.remove(device.getBleAddress());
         if(bleReadCallback != null){
             bleReadCallback.onReadFailed(device, failedCode);
         }

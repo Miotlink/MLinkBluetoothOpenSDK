@@ -35,9 +35,7 @@ public class MLinkSmartBluetoothSDK {
 
     private static volatile MLinkSmartBluetoothSDK instance = null;
 
-
-    public static synchronized MLinkSmartBluetoothSDK getInstance() {
-
+    public static MLinkSmartBluetoothSDK getInstance() {
         if (instance == null) {
             synchronized (MLinkSmartBluetoothSDK.class) {
                 if (instance == null) {
@@ -48,7 +46,7 @@ public class MLinkSmartBluetoothSDK {
         return instance;
     }
 
-    BleSmartService bleSmartService = new BleRequestServiceImpl();
+    private BleSmartService bleSmartService = new BleRequestServiceImpl();
 
     /**
      * 打印数据
@@ -98,7 +96,7 @@ public class MLinkSmartBluetoothSDK {
      * @param smartListener
      * @throws Exception
      */
-    public void init(Context mContext, String appKey, BleSmartListener smartListener) {
+    public void init(Context mContext, BleSmartListener smartListener) {
         try {
             bleSmartService.init(mContext, smartListener);
         } catch (Exception e) {
@@ -169,10 +167,8 @@ public class MLinkSmartBluetoothSDK {
             awsNetWorkInfo.put("OtaUrl", "");
             awsNetWorkInfo.put("Res", "");
             JSONObject awsNetWorks = new JSONObject();
-            if (awsNetWorkInfo != null) {
-                awsNetWorks.put("type", "Wifi");
-                awsNetWorks.put("data", awsNetWorkInfo);
-            }
+            awsNetWorks.put("type", "Wifi");
+            awsNetWorks.put("data", awsNetWorkInfo);
             try {
                 bleSmartService.onAwsStartSmartConfig(macCode, awsNetWorks.toString(), delayMillis, bleSmartConfigListener);
             } catch (Exception e) {

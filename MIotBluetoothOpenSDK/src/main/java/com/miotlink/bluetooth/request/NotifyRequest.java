@@ -11,7 +11,9 @@ import com.miotlink.bluetooth.model.BleDevice;
 import com.miotlink.bluetooth.service.Ble;
 import com.miotlink.bluetooth.service.BleRequestImpl;
 
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by LiuLei on 2017/10/23.
@@ -20,28 +22,43 @@ import java.util.UUID;
 public class NotifyRequest<T extends BleDevice> implements NotifyWrapperCallback<T> {
 
     private static final String TAG = "NotifyRequest";
-    private BleNotifyCallback<T> notifyCallback;
+    private final Map<String, BleNotifyCallback<T>> notifyCallbackMap = new ConcurrentHashMap<>();
     private final BleWrapperCallback<T> bleWrapperCallback = Ble.options().getBleWrapperCallback();
     private final BleRequestImpl<T> bleRequest = BleRequestImpl.getBleRequest();
 
     public void notify(T device, boolean enable, BleNotifyCallback<T> callback) {
-        notifyCallback = callback;
+        if (device != null) {
+            if (enable && callback != null) {
+                notifyCallbackMap.put(device.getBleAddress(), callback);
+            } else if (!enable) {
+                notifyCallbackMap.remove(device.getBleAddress());
+            }
+        }
         bleRequest.setCharacteristicNotification(device.getBleAddress(), enable);
     }
 
     public void notifyByUuid(T device, boolean enable, UUID serviceUUID, UUID characteristicUUID, BleNotifyCallback<T> callback) {
-        notifyCallback = callback;
+        if (device != null) {
+            if (enable && callback != null) {
+                notifyCallbackMap.put(device.getBleAddress(), callback);
+            } else if (!enable) {
+                notifyCallbackMap.remove(device.getBleAddress());
+            }
+        }
         bleRequest.setCharacteristicNotificationByUuid(device.getBleAddress(),enable, serviceUUID, characteristicUUID);
     }
 
     @Deprecated
     public void cancelNotify(T device, BleNotifyCallback<T> callback) {
-        notifyCallback = callback;
+        if (device != null) {
+            notifyCallbackMap.remove(device.getBleAddress());
+        }
         bleRequest.setCharacteristicNotification(device.getBleAddress(), false);
     }
 
     @Override
     public void onChanged(final T device, final BluetoothGattCharacteristic characteristic) {
+        BleNotifyCallback<T> notifyCallback = device == null ? null : notifyCallbackMap.get(device.getBleAddress());
         if (null != notifyCallback){
             notifyCallback.onChanged(device, characteristic);
         }
@@ -53,6 +70,7 @@ public class NotifyRequest<T extends BleDevice> implements NotifyWrapperCallback
 
     @Override
     public void onNotifySuccess(final T device) {
+        BleNotifyCallback<T> notifyCallback = device == null ? null : notifyCallbackMap.get(device.getBleAddress());
         if (null != notifyCallback){
             notifyCallback.onNotifySuccess(device);
         }
@@ -63,6 +81,7 @@ public class NotifyRequest<T extends BleDevice> implements NotifyWrapperCallback
 
     @Override
     public void onNotifyFailed(T device, int failedCode) {
+        BleNotifyCallback<T> notifyCallback = device == null ? null : notifyCallbackMap.remove(device.getBleAddress());
         if (null != notifyCallback){
             notifyCallback.onNotifyFailed(device, failedCode);
         }
@@ -74,6 +93,7 @@ public class NotifyRequest<T extends BleDevice> implements NotifyWrapperCallback
 
     @Override
     public void onNotifyCanceled(T device) {
+        BleNotifyCallback<T> notifyCallback = device == null ? null : notifyCallbackMap.remove(device.getBleAddress());
         if (null != notifyCallback){
             notifyCallback.onNotifyCanceled(device);
         }

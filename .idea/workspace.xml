@@ -5,27 +5,7 @@
       <config />
     </shared>
     <layouts>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ble_control.xml">
-        <config>
-          <theme>@style/AppTheme</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ble_details.xml">
-        <config>
-          <theme>@style/AppTheme</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-        <config>
-          <theme>@style/AppTheme</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sacn_device.xml">
-        <config>
-          <theme>@style/AppTheme</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_scan_device.xml">
         <config>
           <theme>@style/AppTheme</theme>
         </config>
@@ -40,13 +20,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6540b3ea-f2ab-4a4b-9ab7-9c128c5b4099" name="Default Changelist" comment="修改类">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/utils/AesUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_2_4_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_3_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_3_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_5_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_3_6_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_3_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_3_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_li_xiaojun_XPopup_2_9_19_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.androidTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.androidTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.unitTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/MIotBluetoothOpenSDK/MLinkBluetoothOpenSDK.MIotBluetoothOpenSDK.unitTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.androidTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.androidTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/MLinkBluetoothOpenSDK.app.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/consumer-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/consumer-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/proguard-rules.pro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/MLinkSmartBluetoothSDK.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/MLinkSmartBluetoothSDK.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleRequestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleRequestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleSmartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleSmartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/utils/HexUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/utils/HexUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/command/AbsMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/command/AbsMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/command/IMessageProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/command/IMessageProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/command/SmartDeviceNetworkCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/command/SmartDeviceNetworkCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/exception/BleNotSupportException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/exception/BlePermissionException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/exception/BleServiceException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceSmartConfigServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceSmartConfigServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/model/BleModelDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/model/BleModelDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/model/ScanRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/model/ScanRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/queue/Queue.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/queue/Queue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/queue/retry/RetryDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/queue/retry/RetryDispatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ConnectRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ConnectRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/DescriptorRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/DescriptorRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/MtuRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/MtuRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/NotifyRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/NotifyRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ReadRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ReadRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ReadRssiRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ReadRssiRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/WriteRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/WriteRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/service/BleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/service/BleHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/service/BleRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/service/BleRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/service/Options.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/service/Options.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/utils/AesEncryptUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/utils/PacketUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/utils/PacketUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,63 +96,54 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/MIotBluetoothOpenSDK">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
+                <item name="MLinkBluetoothOpenSDK" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
+                <item name="MLinkBluetoothOpenSDK" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MLinkBluetoothOpenSDK" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
-                <item name="miot-blue-smart" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
-                <item name="miot-blue-smart" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
-                <item name="miot-blue-smart" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
-                <item name="miot-blue-smart" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="install" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
-                <item name="miot-blue-smart" type="2d1252cf:ModuleNode" />
+                <item name="MLinkBluetoothOpenSDK" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="other" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
-                <item name="miot-blue-smart" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="upload" type="c8890929:TasksNode$1" />
+                <item name="MLinkBluetoothOpenSDK" type="f1a62948:ProjectNode" />
+                <item name="MIotBluetoothOpenSDK" type="2d1252cf:ModuleNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ISmartBluetoothSDK" type="f1a62948:ProjectNode" />
-                <item name="miot-blue-smart" type="2d1252cf:ModuleNode" />
+                <item name="MLinkBluetoothOpenSDK" type="f1a62948:ProjectNode" />
+                <item name="MIotBluetoothOpenSDK" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MLinkBluetoothOpenSDK" type="f1a62948:ProjectNode" />
+                <item name="MIotBluetoothOpenSDK" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -154,12 +170,12 @@
     &quot;assignee&quot;: &quot;Miotlink&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:/Miotlink/MLinkBluetoothOpenSDK.git",
-    "accountId": "b90e9517-0b9b-44a5-8e71-752e2e105437"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:/Miotlink/MLinkBluetoothOpenSDK.git&quot;,
+    &quot;accountId&quot;: &quot;b90e9517-0b9b-44a5-8e71-752e2e105437&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -181,13 +197,15 @@
     "SHOW_ALL_PROCESSES": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/worker/MLinkBluetoothOpenSDKDemo",
+    "last_opened_file_path": "D:/worker/MLinkBluetoothOpenSDK",
     "project.structure.last.edited": "Dependencies",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -790,46 +808,6 @@
       <option name="project" value="LOCAL" />
       <updated>1685439636123</updated>
     </task>
-    <task id="LOCAL-00047" summary="修改类">
-      <option name="closed" value="true" />
-      <created>1731980611744</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1731980611744</updated>
-    </task>
-    <task id="LOCAL-00048" summary="修改类">
-      <option name="closed" value="true" />
-      <created>1731983584528</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1731983584528</updated>
-    </task>
-    <task id="LOCAL-00049" summary="修改类">
-      <option name="closed" value="true" />
-      <created>1731986531175</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1731986531175</updated>
-    </task>
-    <task id="LOCAL-00050" summary="修改类">
-      <option name="closed" value="true" />
-      <created>1731986663948</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1731986663948</updated>
-    </task>
-    <task id="LOCAL-00051" summary="修改类">
-      <option name="closed" value="true" />
-      <created>1731987606786</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1731987606786</updated>
-    </task>
     <task id="LOCAL-00052" summary="修改类">
       <option name="closed" value="true" />
       <created>1731988163499</created>
@@ -838,7 +816,47 @@
       <option name="project" value="LOCAL" />
       <updated>1731988163499</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="修改类">
+      <option name="closed" value="true" />
+      <created>1731994111543</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1731994111543</updated>
+    </task>
+    <task id="LOCAL-00054" summary="修改类">
+      <option name="closed" value="true" />
+      <created>1731994525153</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1731994525153</updated>
+    </task>
+    <task id="LOCAL-00055" summary="修改类">
+      <option name="closed" value="true" />
+      <created>1731994528353</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1731994528353</updated>
+    </task>
+    <task id="LOCAL-00056" summary="修改类">
+      <option name="closed" value="true" />
+      <created>1732868429820</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1732868429821</updated>
+    </task>
+    <task id="LOCAL-00057" summary="修改类">
+      <option name="closed" value="true" />
+      <created>1732868440232</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1732868440233</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -866,33 +884,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ReadRequest.java</url>
-          <line>38</line>
+          <line>45</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/ui/DeviceControlActivity.java</url>
           <line>156</line>
           <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleDeviceConnectServiceImpl.java</url>
-          <line>271</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ScanRequest.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/request/ScanRequest.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/MIotBluetoothOpenSDK/src/main/java/com/miotlink/bluetooth/impl/BleRequestServiceImpl.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/miotlink/smart/bluetooth/ui/LoadingActivity.java</url>
