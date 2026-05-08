@@ -10,9 +10,8 @@
 -keep class com.miotlink.bluetooth.utils.** { *; }
 
 # Keep annotations and generic signatures for reflection/serialization.
--keepattributes Signature,*Annotation*,InnerClasses,EnclosingMethod
+-keepattributes Signature,*Annotation*,InnerClasses,EnclosingMethod,Exceptions
 
 # Fastjson compatibility.
 -keep class com.alibaba.fastjson.** { *; }
 -dontwarn com.alibaba.fastjson.**
--keepattributes Exceptions
