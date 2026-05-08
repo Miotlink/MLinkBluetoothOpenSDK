@@ -7,6 +7,7 @@
 
 # Keep model classes that are commonly exposed across SDK API.
 -keep class com.miotlink.bluetooth.model.** { *; }
+-keep class com.miotlink.bluetooth.utils.** { *; }
 
 # Keep annotations and generic signatures for reflection/serialization.
 -keepattributes Signature,*Annotation*,InnerClasses,EnclosingMethod
