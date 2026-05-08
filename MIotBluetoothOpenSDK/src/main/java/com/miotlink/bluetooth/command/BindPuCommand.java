@@ -1,27 +1,30 @@
 package com.miotlink.bluetooth.command;
 
-import androidx.annotation.NonNull;
-
-import com.miotlink.bluetooth.utils.HexUtil;
-
 import java.nio.ByteBuffer;
 
-public class BindPuCommand extends AbsMessage{
+/**
+ * 绑定命令
+ */
+public class BindPuCommand extends AbsMessage {
 
-    private int kindId=0;
-    private int modelId=0;
+    private static final byte CMD_BIND = 0x07;
+    private static final byte SUB_CMD = 0x01;
 
+    private final int kindId;
+    private final int modelId;
 
-    @NonNull
+    public BindPuCommand(int kindId, int modelId) {
+        this.kindId = kindId;
+        this.modelId = modelId;
+    }
+
     @Override
-    public String toString() {
-        ByteBuffer buffer = ByteBuffer.allocate(4+3);
-        buffer.put((byte) 0x07);
-        buffer.put((byte) 0x01);
-        buffer.put((byte) 0x01);
-        buffer.put((byte) 0x01);
-        byte[] array = buffer.array();
-        return HexUtil.encodeHexStr(array);
-
+    protected byte[] getCommandData() throws Exception {
+        ByteBuffer buffer = ByteBuffer.allocate(7);
+        buffer.put(CMD_BIND);
+        buffer.put(SUB_CMD);
+        buffer.putShort((short) kindId);
+        buffer.putShort((short) modelId);
+        return buffer.array();
     }
 }

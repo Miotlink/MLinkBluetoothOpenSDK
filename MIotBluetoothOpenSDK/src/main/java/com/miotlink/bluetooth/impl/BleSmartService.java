@@ -31,6 +31,8 @@ public interface BleSmartService {
 
     public void openBluetooth();
 
+    public void setMTU(int mtu);
+
     /**
      * 扫描妙联蓝牙设备
      *
@@ -94,7 +96,7 @@ public interface BleSmartService {
     public void send(String mac, byte[] data) throws Exception;
 
 
-    public void onDisConnect(String macCode) throws Exception;
+    public void disconnect(String macCode) throws Exception;
 
     public void onDestory() throws Exception;
 

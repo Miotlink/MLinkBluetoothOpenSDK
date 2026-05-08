@@ -88,6 +88,10 @@ public class MLinkSmartBluetoothSDK {
 
     }
 
+    public void setMTU(int mtu) {
+
+    }
+
 
     /**
      * 初始化参数
@@ -366,9 +370,9 @@ public class MLinkSmartBluetoothSDK {
      *
      * @param macCode
      */
-    public void disConnect(String macCode) {
+    public void disconnect(String macCode) {
         try {
-            bleSmartService.onDisConnect(macCode);
+            bleSmartService.disconnect(macCode);
         } catch (Exception e) {
             e.printStackTrace();
         }

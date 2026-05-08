@@ -31,6 +31,9 @@ public class BleException extends RuntimeException implements Serializable{
         super(cause);
     }
 
+    public BleException(int invalidParam, String contextOrListenerIsNull) {
+    }
+
     public Throwable getException() {
         return ex;
     }

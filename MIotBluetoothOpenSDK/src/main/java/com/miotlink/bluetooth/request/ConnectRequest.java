@@ -77,12 +77,9 @@ public class ConnectRequest<T extends BleDevice> implements ConnectWrapperCallba
 
     private void doConnectException(final T device, final int errorCode){
         final BleConnectCallback<T> connectCallback = getConnectCallback(device);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (connectCallback != null){
-                    connectCallback.onConnectFailed(device, errorCode);
-                }
+        runOnUiThread(() -> {
+            if (connectCallback != null){
+                connectCallback.onConnectFailed(device, errorCode);
             }
         });
         for (BleConnectCallback<T> callback: connectInnerCallbacks) {

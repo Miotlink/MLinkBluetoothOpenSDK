@@ -199,7 +199,7 @@ class BleDeviceConnectServiceImpl extends BleConnectCallback<BleModelDevice> imp
             }
             ThreadUtils.execute(() -> {
                 try {
-                    BindPuCommand deviceVersionCommand = new BindPuCommand();
+                    BindPuCommand deviceVersionCommand = new BindPuCommand(0,0);
                     ble.write(connectedDevice, deviceVersionCommand.pack(), bleModelDeviceBleWriteCallback);
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -156,9 +156,7 @@ public final class BleRequestImpl<T extends BleDevice> {
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                //Empty the notification attribute list
                 notifyCharacteristics.clear();
-                //notifyIndex = 0;
                 displayGattServices(gatt);
             } else {
                 BleLog.e(TAG, "onServicesDiscovered received: " + status);
@@ -212,8 +210,8 @@ public final class BleRequestImpl<T extends BleDevice> {
                                             BluetoothGattCharacteristic characteristic) {
             synchronized (locker) {
                 if (gatt == null || gatt.getDevice() == null)return;
-//                BleLog.d(TAG, gatt.getDevice().getAddress() + " -- onCharacteristicChanged: "
-//                        + (characteristic.getValue() != null ? ByteUtils.toHexString(characteristic.getValue()) : ""));
+                BleLog.d(TAG, gatt.getDevice().getAddress() + " -- onCharacteristicChanged: "
+                        + (characteristic.getValue() != null ? ByteUtils.toHexString(characteristic.getValue()) : ""));
                 T bleDevice = getBleDeviceInternal(gatt.getDevice().getAddress());
                 if (notifyWrapperCallback != null) {
                     notifyWrapperCallback.onChanged(bleDevice, characteristic);
@@ -310,11 +308,22 @@ public final class BleRequestImpl<T extends BleDevice> {
         return null;
     }
 
-    public static <T extends BleDevice> BleRequestImpl<T> getBleRequest(){
-        if (instance == null){
-            instance = new BleRequestImpl();
+//    public static <T extends BleDevice> BleRequestImpl<T> getBleRequest(){
+//        if (instance == null){
+//            instance = new BleRequestImpl();
+//        }
+//        return instance;
+//    }
+
+    public static <T extends BleDevice> BleRequestImpl<T> getBleRequest() {
+        if (instance == null) {
+            synchronized (BleRequestImpl.class) {
+                if (instance == null) {
+                    instance = new BleRequestImpl<>();
+                }
+            }
         }
-        return instance;
+        return (BleRequestImpl<T>) instance;
     }
 
     void initialize(Context context) {
@@ -698,7 +707,6 @@ public final class BleRequestImpl<T extends BleDevice> {
             T bleDevice = getBleDeviceInternal(device.getAddress());
             connectWrapperCallback.onServicesDiscovered(bleDevice, gatt);
         }
-        // Loops through available GATT Services.
         for (BluetoothGattService gattService : gattServices) {
             String uuid = gattService.getUuid().toString();
             BleLog.d(TAG, "discovered gattServices: " + uuid);

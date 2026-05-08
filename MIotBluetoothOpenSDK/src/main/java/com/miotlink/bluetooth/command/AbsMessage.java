@@ -1,130 +1,153 @@
 package com.miotlink.bluetooth.command;
 
-
 import android.text.TextUtils;
-
 import com.miotlink.bluetooth.service.BleLog;
-import com.miotlink.bluetooth.utils.AesUtils;
-import com.miotlink.bluetooth.utils.BlueTools;
-import com.miotlink.bluetooth.utils.CRC16Utils;
-import com.miotlink.bluetooth.utils.HexUtil;
-import com.miotlink.bluetooth.utils.PacketUtils;
-
+import com.miotlink.bluetooth.utils.*;
 import org.json.JSONObject;
-
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 消息抽象基类 - 提供通用打包逻辑
  * USER：create by qiaozhuang on 2024/11/14 15:08
  * EMAIL:qiaozhuang@miotlink.com
  */
-public class AbsMessage implements IMessage {
-    @Override
-    public byte[] pack() throws Exception {
-        byte[] bytes = HexUtil.decodeHex(toString());
-        ByteBuffer buffer = ByteBuffer.allocate(bytes.length + 9);
-        buffer.put((byte) 0x66);
-        buffer.put((byte) 0x67);
-        buffer.put((byte) (4 + bytes.length));
-        buffer.put(BlueTools.int16ToBytes((int) (System.currentTimeMillis() % 65536)));
-        buffer.put(bytes);
-        String crcValue = CRC16Utils.getCRCValue(bytes);
+public abstract class AbsMessage implements IMessage {
+
+    // 协议常量
+    protected static final byte HEADER_HIGH = (byte) 0x66;
+    protected static final byte HEADER_LOW = (byte) 0x67;
+    protected static final byte TERMINATOR_HIGH = (byte) 0x0D;
+    protected static final byte TERMINATOR_LOW = (byte) 0x0A;
+
+    // 分包类型常量
+    protected static final byte PACKET_TYPE_FIRST = 0x01;
+    protected static final byte PACKET_TYPE_MIDDLE = 0x10;
+    protected static final byte PACKET_TYPE_LAST = 0x01;
+
+    // 命令码
+    protected static final byte CMD_AWS_CONFIG = 0x12;
+
+    // 基础封装长度：header(2) + length(1) + timestamp(2) + crc(2) + terminator(2) = 9
+    protected static final int BASE_OVERHEAD = 9;
+
+    /**
+     * 子类实现此方法，返回命令特定的字节数据（不含协议封装）
+     */
+    protected abstract byte[] getCommandData() throws Exception;
+
+    /**
+     * 获取协议封装后的完整命令数据
+     */
+    protected byte[] getEncapsulatedData() throws Exception {
+        byte[] commandData = getCommandData();
+        return encapsulatePacket(commandData,
+                (byte) (4 + commandData.length));
+    }
+
+    /**
+     * 标准协议封装
+     */
+    protected byte[] encapsulatePacket(byte[] data, byte bodyLength) {
+        int timestamp = (int) (System.currentTimeMillis() % 65536);
+        String crcValue = CRC16Utils.getCRCValue(data);
+
+        ByteBuffer buffer = ByteBuffer.allocate(data.length + BASE_OVERHEAD);
+        buffer.put(HEADER_HIGH);
+        buffer.put(HEADER_LOW);
+        buffer.put(bodyLength);
+        buffer.put(BlueTools.int16ToBytes(timestamp));
+        buffer.put(data);
         buffer.put((byte) CRC16Utils.getCrcMinLen(crcValue));
         buffer.put((byte) CRC16Utils.getCrcMaxLen(crcValue));
-        buffer.put((byte) 0x0D);
-        buffer.put((byte) 0x0A);
-        BleLog.d("Hex", HexUtil.encodeHexStr(buffer.array()));
-        return buffer.array();
+        buffer.put(TERMINATOR_HIGH);
+        buffer.put(TERMINATOR_LOW);
+
+        byte[] result = buffer.array();
+        BleLog.d("Hex", HexUtil.encodeHexStr(result));
+        return result;
+    }
+
+    @Override
+    public byte[] pack() throws Exception {
+        return encapsulatePacket(getCommandData(),
+                (byte) (4 + getCommandData().length));
     }
 
     @Override
     public List<byte[]> packs() throws Exception {
-        String string = toString();
-        if (TextUtils.isEmpty(string)) {
-            throw new Exception("params null");
+        String jsonStr = toString();
+        if (TextUtils.isEmpty(jsonStr)) {
+            throw new IllegalArgumentException("Command data is null");
         }
-        JSONObject jsonObject = new JSONObject(string);
-        if (jsonObject == null) {
-            throw new Exception("json is error");
-        }
-        String Code = jsonObject.getString("Code");
-        if (TextUtils.isEmpty(Code)) {
-            throw new Exception("Code is error");
-        }
-        if (Code.equals("AwsSmartConfig")) {
-            String key = "";
-            JSONObject jsonObject1 = jsonObject.getJSONObject("Data");
-            if (jsonObject1 == null) {
-                throw new Exception("Data is error");
-            }
-            int mtu = jsonObject1.getInt("mtu");
-            String mac = jsonObject1.optString("mac");
-            if (TextUtils.isEmpty(mac)) {
-                mac = jsonObject1.optString("macCode");
-            }
-            String command = jsonObject1.getString("command");
-            List<byte[]> list = new ArrayList<>();
-            int timeId = (int) System.currentTimeMillis() % 65536;
-            byte[] buff = BlueTools.Int16ToBytes(timeId);
-            String timeIdHex = HexUtil.encodeHexStr(buff);
-            if (!TextUtils.isEmpty(mac)) {
-                key = mac.replaceAll(":", "").toUpperCase();
-            }
-            key += timeIdHex.toUpperCase();
-            byte[] encrypt = AesUtils.encrypt(key, command);
-            List<byte[]> networkInfos = PacketUtils.getPackets(mtu - 12, encrypt);
-            if (networkInfos != null) {
-                if (networkInfos.size() == 1) {
-                    byte[] bytes = networkInfos.get(0);
-                    ByteBuffer buffer = ByteBuffer.allocate(bytes.length + 9);
-                    buffer.put((byte) 0x66);
-                    buffer.put((byte) 0x67);
-                    buffer.put((byte) (7 + bytes.length));
-                    buffer.put(BlueTools.int16ToBytes(timeId));
-                    buffer.put((byte) 0x12);
-                    buffer.put((byte) 0x00);
-                    buffer.put((byte) bytes.length);
-                    buffer.put(bytes);
-                    String crcValue = CRC16Utils.getCRCValue(bytes);
-                    buffer.put((byte) CRC16Utils.getCrcMinLen(crcValue));
-                    buffer.put((byte) CRC16Utils.getCrcMaxLen(crcValue));
-                    buffer.put((byte) 0x0D);
-                    buffer.put((byte) 0x0A);
-                    list.add(buffer.array());
-                } else if (networkInfos.size() > 1) {
-                    for (int i = 0; i < networkInfos.size(); i++) {
-                        byte[] bytes = networkInfos.get(i);
-                        byte type = 0x00;
-                        if (i == 0) {
-                            type = 0x01;
-                        } else if (i >= networkInfos.size() - 1) {
-                            type = 0x01;
 
-                        } else {
-                            type = 0x10;
-                        }
-                        ByteBuffer buffer = ByteBuffer.allocate(bytes.length + 9);
-                        buffer.put((byte) 0x66);
-                        buffer.put((byte) 0x67);
-                        buffer.put((byte) (7 + bytes.length));
-                        buffer.put(BlueTools.int16ToBytes(timeId));
-                        buffer.put((byte) 0x12);
-                        buffer.put(type);
-                        buffer.put((byte) bytes.length);
-                        buffer.put(bytes);
-                        String crcValue = CRC16Utils.getCRCValue(bytes);
-                        buffer.put((byte) CRC16Utils.getCrcMinLen(crcValue));
-                        buffer.put((byte) CRC16Utils.getCrcMaxLen(crcValue));
-                        buffer.put((byte) 0x0D);
-                        buffer.put((byte) 0x0A);
-                        list.add(buffer.array());
-                    }
-                }
-                return list;
-            }
+        JSONObject jsonObject = new JSONObject(jsonStr);
+        String code = jsonObject.optString("Code");
+
+        if (!"AwsSmartConfig".equals(code)) {
+            return new ArrayList<>();
         }
-        return new ArrayList<>();
+
+        return handleAwsSmartConfigPackets(jsonObject);
+    }
+
+    /**
+     * 处理 AWS SmartConfig 分包逻辑
+     */
+    private List<byte[]> handleAwsSmartConfigPackets(JSONObject jsonObject) throws Exception {
+        JSONObject data = jsonObject.getJSONObject("Data");
+        if (data == null) {
+            throw new IllegalArgumentException("Data field is missing");
+        }
+
+        int mtu = data.getInt("mtu");
+        String mac = data.optString("mac", data.optString("macCode", ""));
+        String command = data.getString("command");
+
+        int timestamp = (int) System.currentTimeMillis() % 65536;
+        String timestampHex = HexUtil.encodeHexStr(BlueTools.Int16ToBytes(timestamp));
+
+        String encryptionKey = mac.replaceAll(":", "").toUpperCase() + timestampHex.toUpperCase();
+        byte[] encrypted = AesUtils.encrypt(encryptionKey, command);
+
+        List<byte[]> packets = PacketUtils.getPackets(mtu - 12, encrypted);
+        if (packets == null || packets.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<byte[]> result = new ArrayList<>();
+        int packetCount = packets.size();
+
+        for (int i = 0; i < packetCount; i++) {
+            byte[] packetData = packets.get(i);
+            byte type = determinePacketType(i, packetCount);
+
+            ByteBuffer buffer = ByteBuffer.allocate(packetData.length + BASE_OVERHEAD);
+            buffer.put(HEADER_HIGH);
+            buffer.put(HEADER_LOW);
+            buffer.put((byte) (7 + packetData.length));
+            buffer.put(BlueTools.int16ToBytes(timestamp));
+            buffer.put(CMD_AWS_CONFIG);
+            buffer.put(type);
+            buffer.put((byte) packetData.length);
+            buffer.put(packetData);
+
+            String crcValue = CRC16Utils.getCRCValue(packetData);
+            buffer.put((byte) CRC16Utils.getCrcMinLen(crcValue));
+            buffer.put((byte) CRC16Utils.getCrcMaxLen(crcValue));
+            buffer.put(TERMINATOR_HIGH);
+            buffer.put(TERMINATOR_LOW);
+
+            result.add(buffer.array());
+        }
+
+        return result;
+    }
+
+    private byte determinePacketType(int index, int total) {
+        if (total == 1) return PACKET_TYPE_FIRST;
+        if (index == 0 || index == total - 1) return PACKET_TYPE_FIRST;
+        return PACKET_TYPE_MIDDLE;
     }
 }
