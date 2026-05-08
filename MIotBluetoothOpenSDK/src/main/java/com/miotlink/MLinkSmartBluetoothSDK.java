@@ -377,7 +377,6 @@ public class MLinkSmartBluetoothSDK {
             e.printStackTrace();
         }
     }
-
     /**
      * 销毁蓝牙
      */
@@ -388,6 +387,5 @@ public class MLinkSmartBluetoothSDK {
             e.printStackTrace();
         }
     }
-
 
 }

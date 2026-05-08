@@ -1,27 +1,30 @@
 package com.miotlink.bluetooth.command;
-import androidx.annotation.NonNull;
-import com.miotlink.bluetooth.utils.HexUtil;
-import java.nio.ByteBuffer;
-public class UnBindCommand extends AbsMessage{
 
-    private int kindId=0;
-    private int modelId=0;
-    public UnBindCommand(int  kindId,int modelId){
-       this.kindId=kindId;
-       this.modelId=modelId;
+import java.nio.ByteBuffer;
+
+/**
+ * 解绑命令
+ */
+public class UnBindCommand extends AbsMessage {
+
+    private static final byte CMD_UNBIND = 0x0C;
+    private static final byte SUB_CMD = 0x01;
+
+    private final int kindId;
+    private final int modelId;
+
+    public UnBindCommand(int kindId, int modelId) {
+        this.kindId = kindId;
+        this.modelId = modelId;
     }
 
-
-    @NonNull
     @Override
-    public String toString() {
-        ByteBuffer buffer = ByteBuffer.allocate(4+3);
-        buffer.put((byte) 0x0C);
-        buffer.put((byte) 0x01);
+    protected byte[] getCommandData() throws Exception {
+        ByteBuffer buffer = ByteBuffer.allocate(7);
+        buffer.put(CMD_UNBIND);
+        buffer.put(SUB_CMD);
         buffer.putShort((short) kindId);
         buffer.putShort((short) modelId);
-        byte[] array = buffer.array();
-        return HexUtil.encodeHexStr(array);
-
+        return buffer.array();
     }
 }
