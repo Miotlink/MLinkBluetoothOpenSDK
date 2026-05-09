@@ -1,10 +1,13 @@
 <resources>
-    <string name="ble_device_error_7010_message">1.The device is disconnected from the phone, please make sure the device is close to the phone。</string>
-    <string name="ble_device_error_7001_message">1.The device is not equipped with a network。</string>
-    <string name="ble_device_error_7002_message">1.设备配网中。</string>
-    <string name="ble_device_error_7003_message">1.The device is connected to the router, but not to the platform。\n2.Please check if the device has been added to the platform</string>
-    <string name="ble_device_error_7255_message">1.The device has entered the configuration mode,\n2.The name of WiFi not in chinese,\n3.The password of WiFi is correct,\n4.If long or frequently add device operation, ensure that the router has restarted.</string>
-
+    <string name="ble_device_error_7254_message">no find device</string>
+    <string name="ble_device_error_7010_message">Bluetooth has been successfully connected</string>
+    <string name="ble_device_error_7011_message">Distribution network information has been sent</string>
+    <string name="ble_device_error_7001_message">The device has received the network configuration command</string>
+    <string name="ble_device_error_7002_message">Device is connecting to the network</string>
+    <string name="ble_device_error_7003_message">The device is connected to the router</string>
+    <string name="ble_device_error_7015_message">Network configuration successful</string>
+    <string name="ble_device_error_7255_message">1. Network configuration failed\n2. The device has already entered configuration mode\n3. It is best not to use Chinese characters in the WiFi name\n4. WiFi password is correct\n5. If adding devices for a long time or frequently, make sure the router has been restarted\n6. The device does not currently support network configuration with 5G routers</string>
+    <string name="ble_device_error_7253_message">Network configuration time out</string>
     <string name="ble_device_disconnect_error_message">1.The device is disconnected from the phone, please make sure the device is close to the phone。</string>
     <string name="ble_device_start_net_error_message">1.The device is not equipped with a network。</string>
     <string name="ble_device_start_connting_error_message">1.设备配网中。</string>

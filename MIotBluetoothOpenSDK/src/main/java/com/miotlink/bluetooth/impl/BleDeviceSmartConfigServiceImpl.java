@@ -90,7 +90,7 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
                 super.onServicesDiscovered(device, gatt);
                 try {
                     if (bleSmartConfigListener != null) {
-                        bleSmartConfigListener.onLinkSmartConfigListener(7000, "蓝牙连接成功", null);
+                        bleSmartConfigListener.onLinkSmartConfigListener(7010, "蓝牙连接成功", null);
                     }
                     SmartDeviceNetworkCommand bluetoothProtocol = new SmartDeviceNetworkCommand();
                     bluetoothProtocol.setSsid(ssid);
@@ -119,7 +119,7 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
         Ble.options().setFactory(bleFactory);
         ble = Ble.getInstance();
         if (bleModelDevice == null) {
-            bleSmartConfigListener.onLinkSmartConfigListener(7254, "no find device", null);
+            bleSmartConfigListener.onLinkSmartConfigListener(7254, ble.getContext().getResources().getString(R.string.ble_device_error_7254_message), null);
             return;
         }
         handler.sendEmptyMessageDelayed(1000, delayMillis * 1000);
@@ -172,7 +172,7 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
         public void onWriteSuccess(BleModelDevice device, BluetoothGattCharacteristic characteristic) {
             try {
                 if (bleSmartConfigListener != null) {
-                    bleSmartConfigListener.onLinkSmartConfigListener(7000, "蓝牙连接成功", null);
+                    bleSmartConfigListener.onLinkSmartConfigListener(7011, ble.getContext().getResources().getString(R.string.ble_device_error_7011_message), null);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -200,7 +200,7 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
                                 Map<Integer, byte[]> values = command.getValues();
                                 if (values.get(0).length > 0) {
                                     if (values.get(0)[0] == 0x01) {
-                                        errorMessage = "开始配网";
+                                        errorMessage = ble.getContext().getResources().getString(R.string.ble_device_error_7001_message);
                                         errorCode = 7001;
                                     } else if (values.get(0)[0] == 0x02) {
                                         errorMessage = ble.getContext().getResources().getString(R.string.ble_device_error_7002_message);
@@ -212,7 +212,7 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
                                         ble.disconnect(device);
                                         errorCode = 7015;
                                         handler.removeMessages(1000);
-                                        errorMessage = "配网成功。";
+                                        errorMessage = ble.getContext().getResources().getString(R.string.ble_device_error_7015_message);
                                     } else if (values.get(0)[0] == 0xff) {
                                         ble.disconnect(device);
                                         errorCode = 7255;
@@ -237,10 +237,10 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
             super.handleMessage(msg);
             if (msg.what == 1000) {
                 try {
-                    if (bleSmartConfigListener != null) {
-                        bleSmartConfigListener.onLinkSmartConfigTimeOut(7253, "配网超时");
-                    }
                     ble.disconnect(bleModelDevice);
+                    if (bleSmartConfigListener != null) {
+                        bleSmartConfigListener.onLinkSmartConfigTimeOut(7253,   errorMessage = ble.getContext().getResources().getString(R.string.ble_device_error_7253_message));
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
