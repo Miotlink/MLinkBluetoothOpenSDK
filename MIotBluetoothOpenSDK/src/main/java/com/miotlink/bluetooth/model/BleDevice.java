@@ -22,7 +22,6 @@ public class BleDevice implements Parcelable {
     public static final int CONNECTED = 2;
 
     public final static String TAG = BleDevice.class.getSimpleName();
-    private static final long serialVersionUID = -2576082824642358033L;
 
     /**
      * 连接状态

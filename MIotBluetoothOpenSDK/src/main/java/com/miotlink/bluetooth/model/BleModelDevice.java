@@ -47,13 +47,13 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
     private int kindId;
     private int modelId;
     private String productId = "";  // 修复拼写错误
-    private String deviceType = "";
+    private String dType = "WiFi";
     private String imei = "";
     private String deviceName = "";
     private String macAddress = "";
     private int mark = -1;
     private int mVersion;
-    private int mCode;
+    private int mCode = 7;
 
     // ========== 构造函数 ==========
 
@@ -74,6 +74,7 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
         this.mVersion = in.readInt();
         this.mCode = in.readInt();
         this.productId = in.readString();
+        this.dType = in.readString();
     }
 
     // ========== Setter/Getter ==========
@@ -136,6 +137,7 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
         mVersion = dataStream.readByte();
         mark = dataStream.readByte();
 
+
         // 处理 V4 协议
         if (mVersion == PROTOCOL_VERSION_4) {
             if (parseV4Protocol(dataStream, data.length)) {
@@ -147,13 +149,16 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
             mVersion = dataStream.readByte();
             mark = dataStream.readByte();
         }
-
+        if (mVersion == 0x02) {
+            dType = "BLE";
+        }
         // 解析品类和型号
         parseDeviceInfo(dataStream, data);
     }
 
     /**
      * 解析 V4 协议数据
+     *
      * @return true 如果成功解析 IMEI 并可以提前返回
      */
     private boolean parseV4Protocol(DataInputStream stream, int dataLength) throws IOException {
@@ -165,6 +170,7 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
         }
 
         if (buffer[0] == IMEI_IDENTIFIER) {
+            dType = "4G";
             imei = new String(buffer, StandardCharsets.UTF_8);
             macAddress = imei;
             return true;
@@ -255,6 +261,15 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
         return rssiUpdateTime;
     }
 
+
+    public String getdType() {
+        return dType;
+    }
+
+    public void setdType(String dType) {
+        this.dType = dType;
+    }
+
     public void setRssiUpdateTime(long rssiUpdateTime) {
         this.rssiUpdateTime = rssiUpdateTime;
     }
@@ -335,7 +350,6 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
         this.productId = productId;
     }
 
-    // ========== Parcelable 实现 ==========
 
     @Override
     public int describeContents() {
@@ -356,6 +370,7 @@ public final class BleModelDevice extends BleDevice implements Parcelable {
         dest.writeInt(mVersion);
         dest.writeInt(mCode);
         dest.writeString(productId);
+        dest.writeString(dType);
     }
 
     public static final Creator<BleModelDevice> CREATOR = new Creator<BleModelDevice>() {

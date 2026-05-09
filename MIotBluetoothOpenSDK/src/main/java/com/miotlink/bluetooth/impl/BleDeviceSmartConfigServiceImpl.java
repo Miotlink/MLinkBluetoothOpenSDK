@@ -76,6 +76,7 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
             @Override
             public void onConnectionChanged(BleModelDevice device) {
                 BleLog.e("onConnect", device.getConnectionState() + "");
+
             }
 
             @Override
@@ -88,6 +89,9 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
             public void onServicesDiscovered(BleModelDevice device, BluetoothGatt gatt) {
                 super.onServicesDiscovered(device, gatt);
                 try {
+                    if (bleSmartConfigListener != null) {
+                        bleSmartConfigListener.onLinkSmartConfigListener(7000, "蓝牙连接成功", null);
+                    }
                     SmartDeviceNetworkCommand bluetoothProtocol = new SmartDeviceNetworkCommand();
                     bluetoothProtocol.setSsid(ssid);
                     bluetoothProtocol.setPassword(password);
@@ -166,13 +170,13 @@ class BleDeviceSmartConfigServiceImpl implements BleDeviceSmartConfigService {
     BleWriteCallback<BleModelDevice> bleWriteCallback = new BleWriteCallback<BleModelDevice>() {
         @Override
         public void onWriteSuccess(BleModelDevice device, BluetoothGattCharacteristic characteristic) {
-//            try {
-//                if (bleSmartConfigListener != null) {
-//                    bleSmartConfigListener.onLinkSmartConfigListener(7000, "开始配网", null);
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+            try {
+                if (bleSmartConfigListener != null) {
+                    bleSmartConfigListener.onLinkSmartConfigListener(7000, "蓝牙连接成功", null);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     };
     BleNotifyCallback<BleModelDevice> bleNotifyCallback = new BleNotifyCallback<BleModelDevice>() {
